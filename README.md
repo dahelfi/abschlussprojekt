@@ -1,6 +1,6 @@
 # Abschlussprojekt
 
-# gruppe-181.developerakademie.net
+# http://gruppe-181.developerakademie.net/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 
