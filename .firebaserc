@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "abschlussprojekt-64bb5": {
+      "hosting": {
+        "abschlussprojekt": [
+          "abschlussprojekt-64bb5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "abschlussprojekt-64bb5"
+  }
+}
