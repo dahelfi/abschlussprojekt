@@ -1,4 +1,44 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+
+
+/**
+ * Food data with nested structure.
+ * Each node has a name and an optional list of children.
+ */
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+
+const TREE_DATA: FoodNode[] = [
+  {
+    name: 'Fruit',
+    children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
+  },
+  {
+    name: 'Vegetables',
+    children: [
+      {
+        name: 'Green',
+        children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
+      },
+      {
+        name: 'Orange',
+        children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
+      },
+    ],
+  },
+];
+
+/** Flat node with expandable and level information */
+interface ExampleFlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
+
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +47,36 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  fillerNav = Array.from({ length: 10 }, (_, i) => `Nav Item ${i + 1}`);
+  allChannels = Array.from({ length: 10 }, (_, i) => `# Channel ${i + 1}`);
+  allUsers = Array.from({ length: 10 }, (_, i) => `nickname ${i + 1}`);
+
+  private _transformer = (node: FoodNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  };
+
+  treeControl = new FlatTreeControl<ExampleFlatNode>(
+    node => node.level,
+    node => node.expandable,
+  );
+
+  treeFlattener = new MatTreeFlattener(
+    this._transformer,
+    node => node.level,
+    node => node.expandable,
+    node => node.children,
+  );
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+  constructor() {
+    this.dataSource.data = TREE_DATA;
+  }
   
-  constructor() { }
+  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
   }

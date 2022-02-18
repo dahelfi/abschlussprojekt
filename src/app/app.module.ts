@@ -12,6 +12,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     WorkspaceComponent
   ],
   imports: [
+    MatTreeModule,
+    MatExpansionModule,
+    MatButtonModule,
     MatIconModule,
     MatListModule,
     MatToolbarModule,
