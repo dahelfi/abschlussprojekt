@@ -10,12 +10,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainInterfaceComponent,
-    SidebarComponent
+    SidebarComponent,
+    ToolbarComponent
   ],
   imports: [
     MatIconModule,
