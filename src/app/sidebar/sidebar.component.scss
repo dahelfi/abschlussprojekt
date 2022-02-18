@@ -1,3 +1,29 @@
 mat-expansion-panel{
     margin-top: 0.3rem;
 }
+
+.highlight{
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+.showTools{
+    .tools{
+        visibility:hidden;
+    }
+    &:hover .tools{
+        visibility: visible;
+    }
+}
+
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.align-center{
+    display: flex;
+    align-items: center;
+}
