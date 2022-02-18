@@ -15,6 +15,9 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTreeModule } from '@angular/material/tree';
+import { ThreadComponent } from './thread/thread.component';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [
@@ -22,9 +25,11 @@ import { MatTreeModule } from '@angular/material/tree';
     MainInterfaceComponent,
     SidebarComponent,
     ToolbarComponent,
-    WorkspaceComponent
+    WorkspaceComponent,
+    ThreadComponent
   ],
   imports: [
+    MatDividerModule,
     MatTreeModule,
     MatExpansionModule,
     MatButtonModule,
