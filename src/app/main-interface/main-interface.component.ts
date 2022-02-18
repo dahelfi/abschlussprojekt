@@ -18,8 +18,6 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
   // RESPONSIVE SIDENAV 
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array.from({ length: 10 }, (_, i) => `Nav Item ${i + 1}`);
-
   fillerContent = Array.from(
     { length: 10 },
     () =>
