@@ -14,19 +14,23 @@ interface FoodNode {
 
 const TREE_DATA: FoodNode[] = [
   {
-    name: 'Fruit',
-    children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
+    name: 'Channels',
+    children: [{ name: 'Angular' }, { name: 'HTML-CSS' }, { name: 'JavaScript' }],
   },
   {
-    name: 'Vegetables',
+    name: 'Direct messages',
     children: [
       {
-        name: 'Green',
-        children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
+        name: 'Mihai Bala',
+        // children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
       },
       {
-        name: 'Orange',
-        children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
+        name: 'Junus Eva',
+        // children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
+      },
+      {
+        name: 'Manu Mama',
+        // children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
       },
     ],
   },
