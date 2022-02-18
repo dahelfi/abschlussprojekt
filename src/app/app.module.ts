@@ -11,13 +11,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { WorkspaceComponent } from './workspace/workspace.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainInterfaceComponent,
     SidebarComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    WorkspaceComponent
   ],
   imports: [
     MatIconModule,
