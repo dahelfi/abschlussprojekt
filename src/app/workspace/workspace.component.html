@@ -1,3 +1,5 @@
 <div id="workspace">
     <p *ngFor="let content of fillerContent">{{content}}</p>
+    
+    <ckeditor class="ckeditor" [editor]="Editor" data=""></ckeditor>
 </div>

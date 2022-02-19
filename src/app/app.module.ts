@@ -17,7 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTreeModule } from '@angular/material/tree';
 import { ThreadComponent } from './thread/thread.component';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ThreadComponent
   ],
   imports: [
+    CKEditorModule,
     MatDividerModule,
     MatTreeModule,
     MatExpansionModule,
