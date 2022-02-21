@@ -1,1 +1,16 @@
-<app-sidebar></app-sidebar>
+<div id="mainInterface" [class.isMobile]="mobileQuery.matches">
+    <app-toolbar class="toolbar"></app-toolbar>
+
+    <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56">
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+
+        <mat-sidenav-content class="d-flex">
+            <app-workspace></app-workspace>
+            <div class="vr sticky-top"></div>
+            <app-thread></app-thread>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

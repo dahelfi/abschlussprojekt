@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainInterfaceComponent } from './main-interface/main-interface.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import {MatButtonModule} from '@angular/material/button';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
@@ -24,6 +23,18 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { WorkspaceComponent } from './workspace/workspace.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTreeModule } from '@angular/material/tree';
+import { ThreadComponent } from './thread/thread.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -31,9 +42,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MainInterfaceComponent,
     SidebarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ToolbarComponent,
+    WorkspaceComponent,
+    ThreadComponent,
   ],
   imports: [
+    CKEditorModule,
+    MatDividerModule,
+    MatTreeModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
+    MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
