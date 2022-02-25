@@ -1,32 +1,22 @@
 export class User{
-    firstName: string;
-    lastName: string;
+    userName: string;
     email: string;
-    birthDate: number;
-    street: string;
-    zipCode: number;
-    city: string;
-
+    password: string;
+    role: string;
+ 
     constructor(obj?: any){
-        this.firstName = obj ? obj.firstName : 'test';
-        this.lastName = obj ? obj.lastName : 'test';
-        this.email = obj ? obj.email : 'test';
-        this.birthDate = obj ? obj.birthDate : 0;
-        this.street = obj ? obj.street : 'test';
-        this.zipCode = obj ? obj.zipCode : 0;
-        this.city = obj ? obj.city : 'test';
+        this.userName = obj ? obj.userName : '';
+        this.email = obj ? obj.email : '';
+        this.password = obj ? obj.password : '';
+        this.role = obj ? obj.role : '';
     }
 
     public toJSON(){
         return {
-            firstName: this.firstName,
-            lastName: this.lastName,
+            userName: this.userName,
             email : this.email,
-            birthDate: this.birthDate,
-            street: this.street,
-            zipCode: this.zipCode,
-            city: this.city
-
+            password: this.password,
+            role: this.role
         };
 
     }
