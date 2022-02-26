@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   constructor(public backend: BackendServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    
   }
 
 

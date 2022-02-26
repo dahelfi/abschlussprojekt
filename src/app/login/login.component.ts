@@ -13,9 +13,26 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logIn(){
-    console.log('log in');
-  }
+  logIn() {
+    /*setTimeout(async ()=>{
+     
+     
+
+    },5000);
+*/
+  let testArray:string [] = this.backend.getDataFormDatabase('users');
+  console.log("hier spricht das testarray", testArray);
+    
+  } 
+    
+
+    
+
+    
+
+
+
+
 
   
 
