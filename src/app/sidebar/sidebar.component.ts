@@ -1,8 +1,9 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { User } from 'src/models/user.class';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { User } from 'src/models/user.class';
+import { BackendServiceService } from '../backend-service.service';
 
 
 /**
@@ -53,6 +54,8 @@ interface ExampleFlatNode {
 })
 export class SidebarComponent implements OnInit {
   user!:User;
+
+  
   
 
   allChannels = Array.from({ length: 10 }, (_, i) => `# Channel ${i + 1}`);
@@ -80,7 +83,7 @@ export class SidebarComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(public firestore: AngularFirestore) {
+  constructor(public backend:BackendServiceService) {
     this.dataSource.data = TREE_DATA;
   }
   
@@ -89,16 +92,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveUser(){
-    this.user = new User();
-    this.firestore
-    .collection('users')
-    .add(this.user.toJSON())
-    .then((result: any) => {
-      
-      console.log('Adding user finished', result);
-     
-    });
-  }
+
+
 
 }
