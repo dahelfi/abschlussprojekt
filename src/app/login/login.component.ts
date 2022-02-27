@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
    */
   logIn() {
   if(this.inputPassword !=='' || this.inputPassword== undefined && this.inputUsername== undefined || this.inputUsername !==''){
-    let testArray:any [] = [];
+   
     this.backend.getDataFormDatabase('users');
     setTimeout(()=>{
       if(this.checkCredentials(this.backend.elementArray)){
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       }else{
         alert('Password or Username are incorrect try again');
       };
-      },500);
+    },500);
      
     }
   }
