@@ -1,5 +1,12 @@
+// let thread unvisible to focus on buidling sidebar and workspace. After they are finished, delete this.
 #thread{
-    min-width: 10rem;
+    display: none; 
+}
+// let thread unvisible to focus on buidling sidebar and workspace. After they are finished, delete this.
+
+
+#thread{
+    min-width: 10rem; //Just for test, after design of CkEditor finished, delete this.
     width: 40rem;
 }
 
