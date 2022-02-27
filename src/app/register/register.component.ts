@@ -34,8 +34,7 @@ export class RegisterComponent implements OnInit {
     if(this.userJson.userName !== '' && this.userJson.userName !== '' &&
     this.userJson.password !=='' && this.role !== undefined){
       console.log("ich werde ausgeführt");
-      
-      
+  
         if(!this.checkAllUserNames(this.backend.elementArray)){
           this.userJson['role'] = this.role;
           this.userObject = new User(this.userJson);

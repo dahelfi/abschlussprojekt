@@ -50,9 +50,6 @@ export class LoginComponent implements OnInit {
       if(testArray[i].password === this.inputPassword &&
         testArray[i].userName === this.inputUsername){
           return true;
-      }else{
-        return false;
-        
       }
     }
     return false;
