@@ -1,5 +1,6 @@
 <div id="workspace">
     <p *ngFor="let content of fillerContent">{{content}}</p>
     
-    <ckeditor class="ckeditor" [editor]="Editor" data=""></ckeditor>
+    <ckeditor class="ckeditor" [editor]="Editor" [config]="{toolbar:{items: ['bold', 'italic', 'strikethrough', 'underline', '|', 'link','code', '|', 'bulletedList', 'numberedList', '|', 'uploadImage', '|', 'undo', 'redo'],
+    shouldNotGroupWhenFull: true}}" data=""></ckeditor>
 </div>
