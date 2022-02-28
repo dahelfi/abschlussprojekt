@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   Roles: any = ['Admin', 'Author', 'Reader'];
   userJson = {
+    userId: '',
     userName: '', //Bind  to InputField name="name"
     email: '', //Bind to InputField name="email"
     password: '', //Bind to InputField name="message"
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
   };
   userObject!:User;
   role!:string;
+
 
   
 
@@ -36,9 +38,12 @@ export class RegisterComponent implements OnInit {
       console.log("ich werde ausgeführt");
   
         if(!this.checkAllUserNames(this.backend.elementArray)){
+          
           this.userJson['role'] = this.role;
           this.userObject = new User(this.userJson);
-          this.backend.saveToDatabase('users',this.userObject.toJSON());
+          
+          this.backend.CreateInDatabase('users',this.userObject.toJSON());
+          this.insertUserIdIntoUserElement();
           this.router.navigate(['/login']);
         }else{
           alert('Username ist already taken please choose another one');
@@ -54,10 +59,18 @@ export class RegisterComponent implements OnInit {
 
   },500);
 
-  
-  
+  }
 
-   
+
+  public insertUserIdIntoUserElement(){
+    this.backend.getDataFormDatabase('users');
+    setTimeout(()=>{
+      this.backend.idFromAddedElement = this.backend.elementArray[this.backend.elementArray.length-1].customIdName;
+      this.userObject.customIdName = this.backend.idFromAddedElement;
+      this.backend.updateElementInDatabase('users', this.userObject.toJSON(),this.userObject.customIdName);
+
+    },500);
+
   }
 
   public checkAllUserNames(array:any[]){

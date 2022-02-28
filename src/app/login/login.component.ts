@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/models/user.class';
 import { BackendServiceService } from '../backend-service.service';
 
 @Component({
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
     setTimeout(()=>{
       if(this.checkCredentials(this.backend.elementArray)){
         this.router.navigate(['login/main-interface']);
+      
       }else{
         alert('Password or Username are incorrect try again');
       };
@@ -45,14 +47,27 @@ export class LoginComponent implements OnInit {
    */
   checkCredentials(testArray:any[]){
     for (let i = 0; i < testArray.length; i++) {
-      console.log(testArray[i]);
+      console.log("hier wird testarray gelogged",testArray[i]);
       
       if(testArray[i].password === this.inputPassword &&
         testArray[i].userName === this.inputUsername){
+          this.setTheLoggedInUserId(new User(testArray[i]));
           return true;
       }
     }
     return false;
+  }
+
+
+  /**
+   * 
+   * @param userId this method puts the 
+   */
+  setTheLoggedInUserId(user:User){
+    console.log("das hier ist dann das gesetzte userobject", user);
+    this.backend.loggedInUser = user;
+   
+    
   }
     
   
