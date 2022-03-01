@@ -51,6 +51,7 @@ export class RegisterComponent implements OnInit {
     this.userJson.email = '';
     this.userJson.password = '';
     this.role = '';
+    
 
   },500);
 

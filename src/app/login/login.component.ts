@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataPassingService } from '../data-passing.service';
 import { BackendServiceService } from '../backend-service.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   inputPassword!:string;
   inputUsername!:string;
- 
+
+  myEmail!: string;
 
 
-  constructor(public backend:BackendServiceService, private router: Router) { }
+  constructor(public backend:BackendServiceService, private router: Router, public dataPassingService: DataPassingService) { }
 
   ngOnInit(): void {
   }
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
     setTimeout(()=>{
       if(this.checkCredentials(this.backend.elementArray)){
         this.router.navigate(['login/main-interface']);
+        
       }else{
         alert('Password or Username are incorrect try again');
       };
@@ -49,6 +52,8 @@ export class LoginComponent implements OnInit {
       
       if(testArray[i].password === this.inputPassword &&
         testArray[i].userName === this.inputUsername){
+          this.dataPassingService.setMyEmail(testArray[i].customIdName);
+          
           return true;
       }
     }

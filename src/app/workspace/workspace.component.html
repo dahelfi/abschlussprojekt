@@ -1,6 +1,15 @@
 <div id="workspace">
-    <p *ngFor="let content of fillerContent">{{content}}</p>
-    
+    <div class="messageContainer" *ngFor="let message of demoMessages" [class.myMessage]="message.userID == dataPassingService.mycustomIdName">
+        <i class="messageData">
+            <span class="sender">{{message.userID}}</span>
+            <span class="m-3">|</span>
+            <span class="timeStamp">{{message.timeStamp | date:'medium'}}</span>
+        </i>
+        <h2 class="messageContent">{{message.messageContent}}</h2>
+    </div>
+
+
+
     <ckeditor class="ckeditor" [editor]="Editor" [config]="{toolbar:{items: ['bold', 'italic', 'strikethrough', 'underline', '|', 'link','code', '|', 'bulletedList', 'numberedList', '|', 'uploadImage', '|', 'undo', 'redo'],
     shouldNotGroupWhenFull: true}}" data=""></ckeditor>
 </div>

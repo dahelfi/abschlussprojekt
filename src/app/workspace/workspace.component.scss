@@ -1,6 +1,10 @@
 #workspace {
     padding: 1rem;
     position: inherit;
+
+    .myMessage{
+        background-color: pink;
+    }
 }
 
 .ckeditor{

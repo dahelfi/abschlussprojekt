@@ -35,6 +35,9 @@ import { MatTreeModule } from '@angular/material/tree';
 import { ThreadComponent } from './thread/thread.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { DataPassingService } from './data-passing.service';
+
+
 
 @NgModule({
   declarations: [
@@ -73,7 +76,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore())
   ],
-  providers: [],
+  providers: [DataPassingService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -15,29 +15,7 @@ interface FoodNode {
   children?: FoodNode[];
 }
 
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Channels',
-    children: [{ name: 'Angular' }, { name: 'HTML-CSS' }, { name: 'JavaScript' }],
-  },
-  {
-    name: 'Direct messages',
-    children: [
-      {
-        name: 'Mihai Bala',
-        // children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
-      },
-      {
-        name: 'Junus Eva',
-        // children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-      {
-        name: 'Manu Mama',
-        // children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-    ],
-  },
-];
+// const 
 
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
@@ -53,13 +31,20 @@ interface ExampleFlatNode {
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  user!:User;
+  user!: User;
 
-  
-  
-
-  allChannels = Array.from({ length: 10 }, (_, i) => `# Channel ${i + 1}`);
-  allUsers = Array.from({ length: 10 }, (_, i) => `nickname ${i + 1}`);
+  allChannels = []; //we'll get all of channels from DataBase and push in this.
+  allUsers = [
+    {
+      name: 'Dani',
+    },
+    {
+      name: 'Sali',
+    },
+    {
+      name: 'Lami',
+    },
+  ]; //we'll get all of users from DataBase and push in this.
 
   private _transformer = (node: FoodNode, level: number) => {
     return {
@@ -82,11 +67,21 @@ export class SidebarComponent implements OnInit {
   );
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+  TREE_DATA: FoodNode[] = [
+    {
+      name: 'Channels',
+      children: [{ name: 'Angular' }, { name: 'HTML-CSS' }, { name: 'JavaScript' }],
+    },
+    {
+      name: 'Direct messages',
+      children: this.allUsers,
+    },
+  ];
 
-  constructor(public backend:BackendServiceService) {
-    this.dataSource.data = TREE_DATA;
+  constructor(public backend: BackendServiceService) {
+    this.dataSource.data = this.TREE_DATA;
   }
-  
+
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
