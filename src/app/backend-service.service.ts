@@ -45,7 +45,7 @@ export class BackendServiceService {
     public updateElementInDatabase(category:string, objectToUpdate:any, elementId:string){
       
       this.database
-      .collection('users')
+      .collection(category)
       .doc(elementId)
       .update(objectToUpdate)
       .then((result)=>{

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   Roles: any = ['Admin', 'Author', 'Reader'];
   userJson = {
-    userId: '',
+    customIdName: '',
     userName: '', //Bind  to InputField name="name"
     email: '', //Bind to InputField name="email"
     password: '', //Bind to InputField name="message"
