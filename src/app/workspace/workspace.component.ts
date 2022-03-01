@@ -50,6 +50,17 @@ export class WorkspaceComponent implements OnInit {
   constructor(public dataPassingService: DataPassingService) { 
   }
 
+  
+  // public sortTheElementAfterTimestamp(){
+  //   let tempArray: any[] = [];
+  //   let tempElement: any = this.demoMessages[0].timeStamp;
+  //   for (let i = 0; i < this.demoMessages.length; i++) {
+  //     if(tempElement < this.demoMessages[i]){
+  //       tempArray.push(tempElement);
+  //     }
+  //   }
+  // }
+
   ngOnInit(): void {
     console.log(this.dataPassingService.mycustomIdName);
   }
