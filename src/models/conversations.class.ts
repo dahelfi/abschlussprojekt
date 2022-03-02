@@ -2,16 +2,29 @@ import { BackendServiceService } from "src/app/backend-service.service";
 import { Message } from "./message.class";
 
 export class Conversation{
-    customIdName:string='';
-    participators: string[] = []; //vllt doch besser UserObjekte nehmen, nachdenken noch nachher 
-    messages: any[] = [];
+    static conversationsIdCounter = 0;
+    conversationId:number;
+    participators: number[]; //vllt doch besser UserObjekte nehmen, nachdenken noch nachher 
+    messages: any[];
     
 
-    constructor(){}
+    constructor(obj?:any){
+        this.conversationId = obj? obj.conversationId : ++Conversation.conversationsIdCounter;
+        this.participators = obj? obj.participators : [];
+        this.messages = obj? obj.messages : [];
+
+    }
+
+    toObject(obj?:any){
+        this.conversationId = obj.id;
+        this.participators = obj.participators;
+        this.messages = obj.messages;
+
+    }
 
     toJson(){
         return{
-            customIdName: this.customIdName,
+            conversationId: this.conversationId,
             participators: this.participators,
             messages: this.messages
         };

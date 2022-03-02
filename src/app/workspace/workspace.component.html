@@ -1,6 +1,15 @@
 <div id="workspace">
-    <p *ngFor="let content of fillerContent">{{content}}</p>
-    <button (click)="createMessage()" mat-stroked-button color="primary">test</button>
     
-    <ckeditor class="ckeditor" [editor]="Editor" data=""></ckeditor>
+    <div *ngFor="let content2 of backend.allConversationsArrayForUse[0].allConversationsArray[0].messages"  style="background-color: #5221e6; color: white; height: 50px; width: 100px; border-radius: 5px; margin-bottom: 30px;display: flex; justify-content: center; align-items: center; padding: 15px;">
+        {{ content2.messageContent }}
+    </div>
+    <form (ngSubmit)="manageMessageSending()">
+        
+        <button  type="submit" style="margin-top: 10px; margin-bottom: 30px; width: 200px; height: 40px; background-color: #5221e6; border: 1px solid #5221e6; color: white; border-radius: 5px; cursor: pointer;">Sent</button>
+        <textarea [(ngModel)]="messageJson.messageContent" name="test" id=""  rows="1"></textarea>
+    </form>
+    
+
+
+    <ckeditor class="ckeditor d-none" [editor]="Editor" data=""></ckeditor>
 </div>

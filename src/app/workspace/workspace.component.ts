@@ -14,14 +14,16 @@ export class WorkspaceComponent implements OnInit {
 
   public Editor = ClassicEditor;
   messageJson={
-    creatorId: "",
-    messageContent: "Hallo Welt",
+    creatorId: 0,
+    messageContent: "",
     timestamp: ''
 
   };
   messageObject!: Message;
-  createdDate: Date = new Date;
-  conversationObject: Conversation = new Conversation();
+  conversationObject!: Conversation;
+  testArray:string[] = []; 
+  flag = false;
+ 
 
   public config = {
     placeholder: 'Type the content here!'
@@ -38,45 +40,67 @@ export class WorkspaceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createMessage(){
-    
-    this.messageJson.timestamp = this.createdDate.getTime().toString();
-    this.messageJson.creatorId = this.backend.loggedInUser.customIdName
-   
-    this.messageObject = new Message(this.messageJson);
- 
-    
-    this.conversationObject.participators.push(this.backend.loggedInUser.customIdName);
-    this.conversationObject.messages.push(this.messageObject.toJson());
-    this.backend.CreateInDatabase("conversations",this.conversationObject.toJson());
-    this.backend.getDataFormDatabase('conversations');
-    setTimeout(()=>{
-      this.backend.idFromAddedElement = this.backend.elementArray[this.backend.elementArray.length-1].customIdName;
-      this.conversationObject.customIdName = this.backend.idFromAddedElement;
-      
-      
-    this.backend.updateElementInDatabase('conversations', this.conversationObject.toJson(),this.conversationObject.customIdName);
-    this.backend.loggedInUser.allConversations.push(this.conversationObject.customIdName);
-    
-    
-    this.backend.updateElementInDatabase('users',this.backend.loggedInUser.toJSON(), this.backend.loggedInUser.customIdName);
+  public manageMessageSending(){
+    if(!this.flag){
+      this.createFirstConversation();
+    }else{
+      this.sendFurtherMessages();
+    }
+  }
 
-    },500);
+  public createFirstConversation(){
+  
+    this.messageJson.timestamp = new Date().getTime().toString();
+    this.messageJson.creatorId = this.backend.loggedInUser.userId;
+    this.messageObject = new Message(this.messageJson);
+    this.conversationObject = new Conversation();
+    this.conversationObject.participators.push(this.backend.loggedInUser.userId);
+    this.conversationObject.messages.push(this.messageObject.toJson());
+    this.backend.allConversationsForDb.allConversationsArray.push(this.conversationObject.toJson())
+    
+    this.backend.updateAllConversations();
+
+    this.messageJson.messageContent = '';
+    this.flag = true;
     
   }
 
-  // public insertConversationIdIntoConversationElement(){
-  //   this.backend.getDataFormDatabase('conversations');
-  //   setTimeout(()=>{
 
-  //     this.backend.idFromAddedElement = this.backend.elementArray[this.backend.elementArray.length-1].customIdName;
-  //     this.conversationObject.customIdName = this.backend.idFromAddedElement;
-  //     console.log("hier das conversationsobjekt",this.conversationObject.toJson());
-     
+  /**
+   * here we can set the actuall conversationelement
+   * @param conversationJson 
+   */
+  public setConversationById(conversationJson:any){
+    this.backend.actualConversation = new Conversation(conversationJson.allConversationsArray[0])// hier wird die id auch hardgecoded soll nachher dynamisch sein
+  }
+
+  /**
+   * mit dieser methode kann man weitere nachrichten schicken wenn die erste bereits geschickt ist und das element bereits kreeiert ist
+   */
+  public sendFurtherMessages(){
+    this.setConversationById(this.backend.allConversationsArrayForUse[0]);
+    this.messageJson.timestamp = new Date().getTime().toString();
+    this.messageJson.creatorId = this.backend.loggedInUser.userId;
+    this.messageObject = new Message(this.messageJson);
+    this.backend.actualConversation.messages.push(this.messageObject.toJson());
+    this.updateConversation( this.backend.actualConversation.toJson());
+    this.messageJson.messageContent = '';
+
+  }
+
+  /**
+   * updates an exicting conversationselement when one message is added
+   * @param conversationElement 
+   */
+  public updateConversation(conversationElement:any){
+    for (let i = 0; i < this.backend.allConversationsForDb.allConversationsArray.length; i++) {
+       if(this.backend.allConversationsForDb.allConversationsArray[i].conversationId == conversationElement.conversationId){
+        this.backend.allConversationsForDb.allConversationsArray[i] = conversationElement;
+       }
       
-  //     this.backend.updateElementInDatabase('conversations', this.conversationObject.toJson(),this.conversationObject.customIdName);
-  //   },500);
-  // }
+      }
+    this.backend.updateAllConversations();
 
+  }
 
 }

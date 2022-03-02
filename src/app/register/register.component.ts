@@ -12,13 +12,14 @@ export class RegisterComponent implements OnInit {
   Roles: any = ['Admin', 'Author', 'Reader'];
   userJson = {
     customIdName: '',
-    userName: '', //Bind  to InputField name="name"
-    email: '', //Bind to InputField name="email"
-    password: '', //Bind to InputField name="message"
+    userName: '', //Bind  to InputField username
+    email: '', //Bind to InputField email
+    password: '', //Bind to InputField password
     role:''
   };
   userObject!:User;
   role!:string;
+  
 
 
   
@@ -30,20 +31,22 @@ export class RegisterComponent implements OnInit {
   }
 
 
+  /**
+   * central function to manage the registration from a user
+   */
+
   public registerUser(){
-    this.backend.getDataFormDatabase('users');
-    setTimeout(()=>{
+    
     if(this.userJson.userName !== '' && this.userJson.userName !== '' &&
     this.userJson.password !=='' && this.role !== undefined){
-      console.log("ich werde ausgeführt");
   
-        if(!this.checkAllUserNames(this.backend.elementArray)){
+        if(!this.checkAllUserNames(this.backend.allUsersArrayForUse)){
           
           this.userJson['role'] = this.role;
           this.userObject = new User(this.userJson);
-          
-          this.backend.CreateInDatabase('users',this.userObject.toJSON());
-          this.insertUserIdIntoUserElement();
+          this.backend.allUsersForDb.allUsersArray.push(this.userObject.toJSON());
+          this.backend.updateAllUsers();          
+         
           this.router.navigate(['/login']);
         }else{
           alert('Username ist already taken please choose another one');
@@ -57,22 +60,14 @@ export class RegisterComponent implements OnInit {
     this.userJson.password = '';
     this.role = '';
 
-  },500);
-
   }
 
 
-  public insertUserIdIntoUserElement(){
-    this.backend.getDataFormDatabase('users');
-    setTimeout(()=>{
-      this.backend.idFromAddedElement = this.backend.elementArray[this.backend.elementArray.length-1].customIdName;
-      this.userObject.customIdName = this.backend.idFromAddedElement;
-      this.backend.updateElementInDatabase('users', this.userObject.toJSON(),this.userObject.customIdName);
-
-    },500);
-
-  }
-
+/**
+ * checks all matches if the given username is already set in the array
+ * @param array 
+ * @returns 
+ */
   public checkAllUserNames(array:any[]){
     for (let i = 0; i < array.length; i++) {
       if(array[i].userName == this.userJson.userName){
