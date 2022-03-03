@@ -5,12 +5,14 @@ import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ThreadComponent } from './thread/thread.component';
 import { MainInterfaceComponent } from './main-interface/main-interface.component';
+import { WorkspaceComponent } from './workspace/workspace.component';
 
 const routes: Routes = [
 {path:'', component:LoginComponent},
 {path:'register', component:RegisterComponent},
 {path:'login', component:LoginComponent},
-{path:'user/:id', component:MainInterfaceComponent}, //TODO - user ID should be passed on localhref while going to page mainInterface
+{path:'user/:id', component:MainInterfaceComponent}, //user ID should be passed on localhref while going to page mainInterface
+{path:'channel/:id', component:WorkspaceComponent}, //channel ID should be passed on localhref while going to page workspace
 ];
 
 @NgModule({

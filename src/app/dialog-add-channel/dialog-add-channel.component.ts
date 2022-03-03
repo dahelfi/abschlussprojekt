@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
 import { DataService } from '../data.service';
 
@@ -17,6 +18,7 @@ export class DialogAddChannelComponent implements OnInit {
     public firestore: AngularFirestore,
     public dialogRef: MatDialogRef<DialogAddChannelComponent>,
     public data: DataService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -30,14 +32,18 @@ export class DialogAddChannelComponent implements OnInit {
   saveChannel() {
 
     this.loading = true;
+    this.uploadOnDatabase();
+  }
 
+  private uploadOnDatabase() {
     this.firestore
       .collection('ChannelsLamTest')
       .add(this.channel.toJSON())
       .then(result => {
-        // console.log('channel in firestore added', result);
         this.loading = false;
         this.dialogRef.close();
+        
+        this.router.navigate(['channel/' + result.id]);
       })
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +7,11 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   public me!: any;
+  public allChannels: any[] = [];
 
-  constructor() { }
+  constructor(
+    public firebase: AngularFirestore,
+  ) { }
 
   /**
    * this function puts info of currentUser in variable 'me' to use on every component
@@ -16,4 +20,14 @@ export class DataService {
   public setMe(currentUser: any){
     this.me = currentUser;
   }
+
+  public getChannelID(){
+    this.firebase
+      .collection('ChannelsLamTest')
+      .valueChanges({ idField: "customIdName" })
+      .subscribe((collection: any) => {
+        collection.forEach((document: any) => {
+          this.allChannels.push(document);
+        });
+      });}
 }
