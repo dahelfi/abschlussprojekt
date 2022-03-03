@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       
       setTimeout(() => {
         if (this.checkCredentials(this.backend.allDocuments)) {
-          this.router.navigate(['main-interface']);
+          this.router.navigate(['user/' + this.backend.me.customIdName]);
 
         } else {
           alert('Password or email are incorrect try again');
@@ -61,7 +61,9 @@ export class LoginComponent implements OnInit {
 
       if (collectionUsers[i].password === this.inputPassword &&
         collectionUsers[i].email === this.inputEmail) {
+
         this.backend.setMe(collectionUsers[i]);
+
         return true;
       }
 
