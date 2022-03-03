@@ -4,6 +4,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { BackendServiceService } from '../backend-service.service';
 
 
 @Component({
@@ -26,11 +27,15 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
   @ViewChild('snav') snav!: ElementRef;
   // PASSING DATA WITH SIDEBAR-COMPONENT
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+    public backend: BackendServiceService,
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
+
 
   ngOnInit(): void {
   }

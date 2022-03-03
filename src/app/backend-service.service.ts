@@ -9,9 +9,9 @@ import { User } from 'src/models/user.class';
 })
 export class BackendServiceService {
 
-  allDocuments: any[] = [];
-  me!: any;
-  idFromAddedElement!: string;
+  public allDocuments: any[] = [];
+  public me!: any;
+  public idFromAddedElement!: string;
 
 
   constructor(public database: AngularFirestore) { }
@@ -29,7 +29,6 @@ export class BackendServiceService {
 
 
   public getDataFormDatabase(collection: string) {
-    // let tempDoc: any[] = [];
     this.database
       .collection(collection)
       .valueChanges({ idField: "customIdName" })
@@ -38,8 +37,6 @@ export class BackendServiceService {
           this.allDocuments.push(document);
         });
       });
-
-    // this.allDocuments = tempDoc;
   }
 
 
@@ -60,8 +57,18 @@ export class BackendServiceService {
    * this method puts all infos of the user, that is logged in currently.
    * @param loggedInUser is all inofs of the user, that is logged in currently.
    */
-  public setMe(loggedInUser: any){
+  public setMe(loggedInUser: any) {
     this.me = loggedInUser;
+  }
+
+  public setMeByUid(uid: any) {
+    this.database
+      .collection('UsersLamTest')
+      .doc(uid)
+      .valueChanges()
+      .subscribe(user => {
+        this.me = new User(user); //altanative: this.me = user;
+      })
   }
 
 }

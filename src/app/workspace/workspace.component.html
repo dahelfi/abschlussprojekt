@@ -5,7 +5,7 @@
         {{ content2.messageContent }}
     </div> -->
 
-    <form (ngSubmit)="manageMessageSending()" class="fixed-bottom hstack gap-2 p-1">
+    <form (ngSubmit)="manageMessageSending()" class="position-absolute bottom-0 w-75 hstack gap-2 p-1">
 
         <textarea class="form-control me-auto" 
             [(ngModel)]="messageJson.messageContent" 

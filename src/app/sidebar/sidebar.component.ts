@@ -4,6 +4,8 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { User } from 'src/models/user.class';
 import { BackendServiceService } from '../backend-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 
 
 /**
@@ -22,20 +24,7 @@ const TREE_DATA: FoodNode[] = [
   },
   {
     name: 'Direct messages',
-    children: [
-      {
-        name: 'Mihai Bala',
-        // children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
-      },
-      {
-        name: 'Junus Eva',
-        // children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-      {
-        name: 'Manu Mama',
-        // children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-    ],
+    children: [{ name: 'Mihai Bala', }, { name: 'Junus Eva', }, { name: 'Manu Mama', },],
   },
 ];
 
@@ -53,13 +42,13 @@ interface ExampleFlatNode {
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  user!:User;
+  user!: User;
 
-  
-  
 
-  allChannels = Array.from({ length: 10 }, (_, i) => `# Channel ${i + 1}`);
-  allUsers = Array.from({ length: 10 }, (_, i) => `nickname ${i + 1}`);
+
+
+  public allChannels: any[] = [];
+  public allUsers: any[] = [];
 
   private _transformer = (node: FoodNode, level: number) => {
     return {
@@ -83,16 +72,38 @@ export class SidebarComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(public backend:BackendServiceService) {
+  constructor(
+    public backend: BackendServiceService,
+    public dialog: MatDialog,
+    public firestore: AngularFirestore,
+  ) {
     this.dataSource.data = TREE_DATA;
   }
-  
+
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
+    // this.backend.getDataFormDatabase('ChannelsLamTest');
+    // this.backend.allDocuments.forEach(channel =>{
+    //   console.log('channel',channel);
+
+    //   this.allChannels.push(channel.name)
+    // })
+
+    this.firestore
+      .collection('ChannelsLamTest')
+      .valueChanges()
+      .subscribe(channel => {
+        this.allChannels = channel;
+        
+      })
+
   }
 
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddChannelComponent);
+  }
 
 
 }

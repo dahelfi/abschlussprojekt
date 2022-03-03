@@ -35,6 +35,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { ThreadComponent } from './thread/thread.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -46,8 +48,10 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     ToolbarComponent,
     WorkspaceComponent,
     ThreadComponent,
+    DialogAddChannelComponent,
   ],
   imports: [
+    MatDialogModule,
     CKEditorModule,
     MatDividerModule,
     MatTreeModule,
