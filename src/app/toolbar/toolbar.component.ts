@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendServiceService } from '../backend-service.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,10 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 export class ToolbarComponent implements OnInit {
 
   snav: any;
+
   constructor(
     public backend: BackendServiceService,
     public firestore: AngularFirestore,
     public route: ActivatedRoute,
+    public data: DataService,
   ) { }
 
   public uid: any;
@@ -28,8 +31,8 @@ export class ToolbarComponent implements OnInit {
      */
     this.getIdFromRoute()
     this.getUserFromFirebaseById()
+    this.data.setMe(this.uid)
   }
-
 
   getIdFromRoute() {
     this.route.paramMap.subscribe(params => {
@@ -42,7 +45,6 @@ export class ToolbarComponent implements OnInit {
       //this.backend.setMeByUid(this.uid)
       // this.userName = this.backend.me.userName
       // console.log(this.backend.me);
-
 
       this.firestore
         .collection('UsersLamTest')
