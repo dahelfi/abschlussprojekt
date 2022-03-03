@@ -1,6 +1,6 @@
 <div id="workspace">
     <p *ngFor="let content of fillerContent">{{content}}</p>
     <button (click)="createMessage()" mat-stroked-button color="primary">test</button>
-    
-    <ckeditor class="ckeditor" [editor]="Editor" data=""></ckeditor>
+
+    <ckeditor class="ckeditor d-none" [editor]="Editor" data=""></ckeditor>
 </div>
