@@ -8,51 +8,52 @@ import { User } from 'src/models/user.class';
   providedIn: 'root'
 })
 export class BackendServiceService {
-  
-  elementArray:any[] = [];
-  loggedInUser!:User;
+
+  allDocuments: any[] = [];
+  loggedInUser!: User;
   idFromAddedElement!: string;
- 
 
-  constructor(public database:AngularFirestore) { }
 
-    public CreateInDatabase(category:string, objectToSave:any){   
-     
-      this.database
-      .collection(category)
+  constructor(public database: AngularFirestore) { }
+
+  public CreateInDatabase(collection: string, objectToSave: any) {
+
+    this.database
+      .collection(collection)
       .add(objectToSave)
       .then((result: any) => {
         console.log('Adding finished', result);
       });
-  
-    }
+
+  }
 
 
-    public getDataFormDatabase(category:string){
-        let tempDoc: any[] = [];
-        this.database.collection(category).valueChanges({idField:"customIdName"}).subscribe((collection: any)=>{
-            collection.forEach((element:any)=>{
-           tempDoc.push(element);
-           
-           
-            });
-              this.elementArray = tempDoc;
-              
+  public getDataFormDatabase(collection: string) {
+    // let tempDoc: any[] = [];
+    this.database
+      .collection(collection)
+      .valueChanges({ idField: "customIdName" })
+      .subscribe((collection: any) => {
+        collection.forEach((document: any) => {
+          this.allDocuments.push(document);
         });
-       
-    }
+      });
 
-    public updateElementInDatabase(category:string, objectToUpdate:any, elementId:string){
-      
-      this.database
-      .collection(category)
+    // this.allDocuments = tempDoc;
+  }
+
+
+  public updateElementInDatabase(collection: string, objectToUpdate: any, elementId: string) {
+
+    this.database
+      .collection(collection)
       .doc(elementId)
       .update(objectToUpdate)
-      .then((result)=>{
+      .then((result) => {
         console.log("update finished");
       });
 
-    }
+  }
 
- 
+
 }

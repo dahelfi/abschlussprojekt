@@ -1,37 +1,29 @@
 import { Conversation } from "./conversations.class";
 
-export class User{
-    customIdName:string;
+export class User {
     userName: string;
     email: string;
     password: string;
     role: string;
-    allConversations: string[] = [];
-  
 
 
- 
-    constructor(obj?: any){
-        this.customIdName = obj ? obj.customIdName : "";
+
+
+    constructor(obj?: any) {
         this.userName = obj ? obj.userName : '';
         this.email = obj ? obj.email : '';
         this.password = obj ? obj.password : '';
         this.role = obj ? obj.role : '';
-        
-        
     }
 
 
 
-    public toJSON(){
+    public toJSON() {
         return {
-            customIdName: this.customIdName,
             userName: this.userName,
-            email : this.email,
+            email: this.email,
             password: this.password,
             role: this.role,
-            allConversations: this.allConversations
         };
-
     }
 }

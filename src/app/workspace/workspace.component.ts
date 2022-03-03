@@ -41,25 +41,25 @@ export class WorkspaceComponent implements OnInit {
   createMessage(){
     
     this.messageJson.timestamp = this.createdDate.getTime().toString();
-    this.messageJson.creatorId = this.backend.loggedInUser.customIdName
+    // this.messageJson.creatorId = this.backend.loggedInUser.customIdName
    
     this.messageObject = new Message(this.messageJson);
  
     
-    this.conversationObject.participators.push(this.backend.loggedInUser.customIdName);
+    // this.conversationObject.participators.push(this.backend.loggedInUser.customIdName);
     this.conversationObject.messages.push(this.messageObject.toJson());
     this.backend.CreateInDatabase("conversations",this.conversationObject.toJson());
     this.backend.getDataFormDatabase('conversations');
     setTimeout(()=>{
-      this.backend.idFromAddedElement = this.backend.elementArray[this.backend.elementArray.length-1].customIdName;
+      this.backend.idFromAddedElement = this.backend.allDocuments[this.backend.allDocuments.length-1].customIdName;
       this.conversationObject.customIdName = this.backend.idFromAddedElement;
       
       
     this.backend.updateElementInDatabase('conversations', this.conversationObject.toJson(),this.conversationObject.customIdName);
-    this.backend.loggedInUser.allConversations.push(this.conversationObject.customIdName);
+    // this.backend.loggedInUser.allConversations.push(this.conversationObject.customIdName);
     
     
-    this.backend.updateElementInDatabase('users',this.backend.loggedInUser.toJSON(), this.backend.loggedInUser.customIdName);
+    // this.backend.updateElementInDatabase('users',this.backend.loggedInUser.toJSON(), this.backend.loggedInUser.customIdName);
 
     },500);
     
@@ -69,7 +69,7 @@ export class WorkspaceComponent implements OnInit {
   //   this.backend.getDataFormDatabase('conversations');
   //   setTimeout(()=>{
 
-  //     this.backend.idFromAddedElement = this.backend.elementArray[this.backend.elementArray.length-1].customIdName;
+  //     this.backend.idFromAddedElement = this.backend.allDocuments[this.backend.allDocuments.length-1].customIdName;
   //     this.conversationObject.customIdName = this.backend.idFromAddedElement;
   //     console.log("hier das conversationsobjekt",this.conversationObject.toJson());
      
@@ -78,5 +78,5 @@ export class WorkspaceComponent implements OnInit {
   //   },500);
   // }
 
-
+  public manageMessageSending(){}
 }

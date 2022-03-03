@@ -10,7 +10,7 @@ import { BackendServiceService } from '../backend-service.service';
 })
 export class LoginComponent implements OnInit {
   inputPassword!:string;
-  inputUsername!:string;
+  inputEmail!:string;
  
 
 
@@ -23,21 +23,25 @@ export class LoginComponent implements OnInit {
    * this method manages the login: get the data form the backend and let the user go the main-interface
    */
   logIn() {
-  if(this.inputPassword !=='' || this.inputPassword== undefined && this.inputUsername== undefined || this.inputUsername !==''){
+  if(this.allInputAreFilled()){
    
-    this.backend.getDataFormDatabase('users');
+    this.backend.getDataFormDatabase('UsersLamTest');
     setTimeout(()=>{
-      if(this.checkCredentials(this.backend.elementArray)){
+      if(this.checkCredentials(this.backend.allDocuments)){
         this.router.navigate(['login/main-interface']);
       
       }else{
-        alert('Password or Username are incorrect try again');
+        alert('Password or email are incorrect try again');
       };
     },500);
      
     }
   }
   
+
+  private allInputAreFilled(){
+    return this.inputPassword !=='' || this.inputPassword== undefined && this.inputEmail== undefined || this.inputEmail !=='';
+  }
 
 
   /**
@@ -50,7 +54,7 @@ export class LoginComponent implements OnInit {
       console.log("hier wird testarray gelogged",testArray[i]);
       
       if(testArray[i].password === this.inputPassword &&
-        testArray[i].userName === this.inputUsername){
+        testArray[i].email === this.inputEmail){
           this.setTheLoggedInUserId(new User(testArray[i]));
           return true;
       }
