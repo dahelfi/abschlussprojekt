@@ -10,7 +10,7 @@ import { User } from 'src/models/user.class';
 export class BackendServiceService {
 
   allDocuments: any[] = [];
-  loggedInUser!: User;
+  me!: any;
   idFromAddedElement!: string;
 
 
@@ -50,10 +50,18 @@ export class BackendServiceService {
       .doc(elementId)
       .update(objectToUpdate)
       .then((result) => {
-        console.log("update finished");
+        console.log("update finished", result);
       });
 
   }
 
+
+  /**
+   * this method puts all infos of the user, that is logged in currently.
+   * @param loggedInUser is all inofs of the user, that is logged in currently.
+   */
+  public setMe(loggedInUser: any){
+    this.me = loggedInUser;
+  }
 
 }

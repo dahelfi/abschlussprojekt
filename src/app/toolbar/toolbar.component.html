@@ -1,7 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="hstack gap-3 ">
     <button mat-icon-button (click)="snav.toggle()">
         <mat-icon>space_dashboard</mat-icon>
     </button>
-    
+
     <h1 class="logo">SLACK COPY</h1>
+
+
+    <button mat-icon-button class="ms-auto">
+        {{backend.me.userName}}
+    </button>
+
 </mat-toolbar>
