@@ -7,11 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainInterfaceComponent } from './main-interface/main-interface.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -35,6 +35,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { ThreadComponent } from './thread/thread.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     ThreadComponent,
   ],
   imports: [
+    TextFieldModule,
     CKEditorModule,
     MatDividerModule,
     MatTreeModule,
@@ -65,7 +67,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
 
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

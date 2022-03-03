@@ -17,6 +17,26 @@ export class LoginComponent implements OnInit {
   constructor(public backend:BackendServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    this.backend.init();
+  
+    
+      this.backend.database.
+      collection('conversations')
+      .valueChanges({idField:"customIdName"})
+      .subscribe((conversations:any)=>{
+      this.backend.allConversationsArrayForUse=conversations;//damit füllen wir unsere zentrale datenstruktur
+      console.log("here are the stored conversations", conversations);
+      });
+      
+      this.backend.database.
+      collection('users')
+      .valueChanges({idField:"customIdName"})
+      .subscribe((users:any)=>{
+        this.backend.allUsersArrayForUse=users;//damit füllen wir unsere zentrale datenstruktur users
+        console.log("here are the stored users: ",users);
+
+      });
+
   }
 
   /**
@@ -24,16 +44,16 @@ export class LoginComponent implements OnInit {
    */
   logIn() {
   if(this.inputPassword !=='' || this.inputPassword== undefined && this.inputUsername== undefined || this.inputUsername !==''){
+      console.log("hier vom backend",this.backend.allUsersArrayForUse);
+      
    
-    this.backend.getDataFormDatabase('users');
-    setTimeout(()=>{
-      if(this.checkCredentials(this.backend.elementArray)){
+      if(this.checkCredentials(this.backend.allUsersArrayForUse[0].allUsersArray)){
         this.router.navigate(['login/main-interface']);
       
       }else{
         alert('Password or Username are incorrect try again');
       };
-    },500);
+  
      
     }
   }
@@ -47,11 +67,11 @@ export class LoginComponent implements OnInit {
    */
   checkCredentials(testArray:any[]){
     for (let i = 0; i < testArray.length; i++) {
-      console.log("hier wird testarray gelogged",testArray[i]);
+
       
       if(testArray[i].password === this.inputPassword &&
         testArray[i].userName === this.inputUsername){
-          this.setTheLoggedInUserId(new User(testArray[i]));
+          this.setTheLoggedInUser(new User(testArray[i]));
           return true;
       }
     }
@@ -61,10 +81,10 @@ export class LoginComponent implements OnInit {
 
   /**
    * 
-   * @param userId this method puts the 
+   * @param userId this method puts the given userobjekt and sets it as the loggedInUser
    */
-  setTheLoggedInUserId(user:User){
-    console.log("das hier ist dann das gesetzte userobject", user);
+  setTheLoggedInUser(user:User){
+  
     this.backend.loggedInUser = user;
    
     
