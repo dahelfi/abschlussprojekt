@@ -24,15 +24,14 @@ export class DataService{
     this.me = currentUser;
   }
 
-  public getChannelID() {
-    this.firebase
-      .collection('ChannelsLamTest')
-      .valueChanges({ idField: "customIdName" })
-      .subscribe((collection: any) => {
-        collection.forEach((document: any) => {
-          this.allChannels.push(document);
-        });
-      });
+  public getallUsers(x: any){
+    this.allUsers = x;
+  }
+  public getallChannels(x: any){
+    this.allChannels = x;
+  }
+  public getallMessages(x: any){
+    this.allMessages = x;
   }
 
 }

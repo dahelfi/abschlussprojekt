@@ -8,6 +8,10 @@ mat-expansion-panel{
     }
 }
 
+.activeRoute{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .showTools{
     .tools{
         visibility:hidden;

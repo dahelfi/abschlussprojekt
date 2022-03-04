@@ -15,7 +15,7 @@ const routes: Routes = [
     path: 'user/:uid', component: MainInterfaceComponent,
     children: [
       { path: 'channel/:cid', component: WorkspaceComponent },
-      { path: 'messages/:cid', component: WorkspaceComponent },
+      { path: 'messages/:mid', component: WorkspaceComponent },
     ]
   }, 
 ];

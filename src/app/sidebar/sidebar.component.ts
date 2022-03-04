@@ -5,10 +5,10 @@ import { BackendServiceService } from '../backend-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 import { DataService } from '../data.service';
-import { Router } from '@angular/router';
 import { DialogAddDirectmessageComponent } from '../dialog-add-directmessage/dialog-add-directmessage.component';
 
-
+import { ActivatedRoute, Router, ParamMap, NavigationEnd } from '@angular/router';
+import { filter, map, mergeMap, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -20,6 +20,7 @@ import { DialogAddDirectmessageComponent } from '../dialog-add-directmessage/dia
 
 export class SidebarComponent implements OnInit {
   user!: User;
+  public cid!: any;
 
   public allUsers: any[] = [];
   public allChannels: any[] = [];
@@ -31,7 +32,23 @@ export class SidebarComponent implements OnInit {
     public firestore: AngularFirestore,
     public data: DataService,
     public router: Router,
-  ) { }
+    private activatedRoute: ActivatedRoute,
+  ) {
+    // CAN NOT GET CID FROM ACTIVATED:FIRSTCHILD, SO I FOUND BELOW METHOD FROM https://stackoverflow.com/questions/48977775/activatedroute-subscribe-to-first-child-parameters-observer
+    this.router.events
+      .pipe(
+        filter((event: any) => event instanceof NavigationEnd),
+        map(() => this.activatedRoute),
+        map((route: any) => {
+          while (route.firstChild) route = route.firstChild;
+          return route;
+        }),
+        mergeMap((route: any) => route.paramMap),
+        tap((paramMap: any) => {
+          this.cid = paramMap.params.cid;
+        })
+      ).subscribe()
+  }
 
   ngOnInit(): void {
     this.firestore
@@ -39,19 +56,29 @@ export class SidebarComponent implements OnInit {
       .valueChanges({ idField: 'cid' })
       .subscribe(collection => {
         this.allChannels = collection;
+        this.data.getallChannels(this.allChannels)
       });
-    this.firestore
+      
+      this.firestore
       .collection('UsersLamTest')
       .valueChanges({ idField: 'uid' })
       .subscribe(collection => {
         this.allUsers = collection;
+        this.data.getallUsers(this.allUsers)
       });
-    this.firestore
+      
+      this.firestore
       .collection('MessagesLamTest')
       .valueChanges({ idField: 'mid' })
       .subscribe(collection => {
         this.allMessages = collection;
+        this.data.getallMessages(this.allMessages)
       });
+
+    // this.route.firstChild.paramMap.subscribe(params =>{
+    //   this.cid = params.get('cid');
+    // })
+
   }
 
   public getCollectionFromFirebase(collectionName: string, customIdName: string, array: any) {
@@ -61,7 +88,7 @@ export class SidebarComponent implements OnInit {
       .subscribe(collection => {
         array = collection;
 
-        console.log(collectionName,array);
+        console.log(collectionName, array);
       });
   }
 

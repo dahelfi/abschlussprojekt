@@ -4,7 +4,10 @@
 <mat-list *ngFor="let user of data.allUsers">
 
     <mat-card>
-        {{user.name}} <div class="hr"></div> {{user.email}}
+
+        <mat-card-title>{{user.userName}}</mat-card-title>
+        <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+         
     </mat-card>
 
 </mat-list>
