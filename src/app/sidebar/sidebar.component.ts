@@ -6,6 +6,7 @@ import { User } from 'src/models/user.class';
 import { BackendServiceService } from '../backend-service.service';
 import { DialogAddConversationComponent } from '../dialog-add-conversation/dialog-add-conversation.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 /**
@@ -62,7 +63,9 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     public backend: BackendServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public route: ActivatedRoute,
+    public router: Router,
   ) {
   }
 
@@ -76,7 +79,9 @@ export class SidebarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => { });
   }
 
-
+  public addConversationIDInURL(cid: any){
+    this.router.navigate(['user/' + this.backend.loggedInUser.customIdName + '/conversation/' + cid])
+  }
 
 
 }

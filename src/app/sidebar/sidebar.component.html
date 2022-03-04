@@ -33,9 +33,9 @@
                         </button>
                     </div>
                 </div>
-                <div class="card-text" *ngFor="let conversation of backend.loggedInUser.allConversations">
+                <div class="card-text" *ngFor="let conversationID of backend.loggedInUser.allConversations">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start" [routerLink]="['/conversation/', conversation]">{{conversation}}</li>
+                      <li class="list-group-item highlight btn text-start" (click)="addConversationIDInURL(conversationID)">{{conversationID}}</li>
                     </ul>
                 </div>
             </div>
