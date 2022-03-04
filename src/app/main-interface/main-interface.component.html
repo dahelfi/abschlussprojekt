@@ -8,7 +8,10 @@
         </mat-sidenav>
 
         <mat-sidenav-content class="d-flex">
-            <app-workspace class="w-100"></app-workspace>
+            <div class="w-100 h-100">
+                <router-outlet></router-outlet>
+            </div>
+
             <div class="vr sticky-top"></div>
             <app-thread></app-thread>
         </mat-sidenav-content>

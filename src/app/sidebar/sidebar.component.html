@@ -1,30 +1,4 @@
 <mat-nav-list id="sidebar">
-    <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <mat-tree-node class="highlight" *matTreeNodeDef="let node" matTreeNodePadding>
-            <div>
-                {{node.name}}
-            </div>
-        </mat-tree-node>
-
-        <mat-tree-node class="highlight showTools" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
-                <mat-icon class="mat-icon-rtl-mirror">
-                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                </mat-icon>
-            </button>
-
-            <div class="w-100 hstack gap-3">
-                {{node.name}}
-
-                <div class="tools ms-auto">
-                    <button mat-icon-button>
-                        <mat-icon>add</mat-icon>
-                    </button>
-                </div>
-            </div>
-
-        </mat-tree-node>
-    </mat-tree> -->
 
     <div>
         <div id="Channels" class="card">
@@ -34,7 +8,7 @@
                         Channels
                     </h3>
                     <div class="tools ms-auto">
-                        <button mat-icon-button (click)="openDialog()">
+                        <button mat-icon-button (click)="openDialogAddChannel()">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
@@ -54,14 +28,14 @@
                         Direct messages
                     </h3>
                     <div class="tools ms-auto">
-                        <button mat-icon-button (click)="openDialog()">
+                        <button mat-icon-button (click)="openDialogAddDirectMessage()">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
                 </div>
                 <div class="card-text" *ngFor="let messages of allMessages">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start" [routerLink]="['/messages/', messages.cid]">{{messages.name}}</li>
+                      <li class="list-group-item highlight btn text-start" (click)="addMessagesIdInURL(messages.mid)" >{{messages.name}}</li>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,10 @@
+<h3>
+    All users
+</h3>
+<mat-list *ngFor="let user of data.allUsers">
+
+    <mat-card>
+        {{user.name}} <div class="hr"></div> {{user.email}}
+    </mat-card>
+
+</mat-list>

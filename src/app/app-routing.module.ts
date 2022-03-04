@@ -11,9 +11,13 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user/:uid', component: MainInterfaceComponent }, //user ID should be passed on localhref while going to page mainInterface
-  { path: 'user/:uid' + '/channel/:cid', component: MainInterfaceComponent }, //channel ID should be passed on localhref while going to page workspace
-  { path: 'messages/:mid', component: MainInterfaceComponent },
+  {
+    path: 'user/:uid', component: MainInterfaceComponent,
+    children: [
+      { path: 'channel/:cid', component: WorkspaceComponent },
+      { path: 'messages/:cid', component: WorkspaceComponent },
+    ]
+  }, 
 ];
 
 @NgModule({
