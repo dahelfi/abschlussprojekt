@@ -43,7 +43,7 @@ export class DialogAddChannelComponent implements OnInit {
         this.loading = false;
         this.dialogRef.close();
         
-        this.router.navigate(['channel/' + result.id]);
+        this.router.navigate(['user/' + this.data.me + '/channel/' + result.id]);
       })
   }
 }

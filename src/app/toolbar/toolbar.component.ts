@@ -36,7 +36,7 @@ export class ToolbarComponent implements OnInit {
 
   getIdFromRoute() {
     this.route.paramMap.subscribe(params => {
-      this.uid = params.get('id');
+      this.uid = params.get('uid');
     });
   }
 
