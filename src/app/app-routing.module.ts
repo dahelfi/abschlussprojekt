@@ -11,6 +11,8 @@ const routes: Routes = [
 {path:'login', component:LoginComponent},
 {path:'register', component:RegisterComponent},
 {path:'user/:id', component:MainInterfaceComponent},
+{path:'user/:id' + '/conversation/:cid', component:MainInterfaceComponent},
+{path:'conversation/:cid', component:MainInterfaceComponent},
 {path:'main-interface', component:MainInterfaceComponent}
 ];
 

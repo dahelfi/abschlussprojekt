@@ -55,41 +55,17 @@ interface ExampleFlatNode {
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  user!:User;
+  user!: User;
 
-  
-  
+  public allConversations: any[] = [];
+  public allUsers: any[] = [];
 
-  allChannels = Array.from({ length: 10 }, (_, i) => `# Channel ${i + 1}`);
-  allUsers = Array.from({ length: 10 }, (_, i) => `nickname ${i + 1}`);
-
-  private _transformer = (node: FoodNode, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
-  };
-
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level,
-    node => node.expandable,
-  );
-
-  treeFlattener = new MatTreeFlattener(
-    this._transformer,
-    node => node.level,
-    node => node.expandable,
-    node => node.children,
-  );
-
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
-  constructor(public backend:BackendServiceService, public dialog: MatDialog) {
-    this.dataSource.data = TREE_DATA;
+  constructor(
+    public backend: BackendServiceService,
+    public dialog: MatDialog
+  ) {
   }
-  
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+
 
   ngOnInit(): void {
   }
@@ -97,9 +73,7 @@ export class SidebarComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddConversationComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.afterClosed().subscribe(result => { });
   }
 
 

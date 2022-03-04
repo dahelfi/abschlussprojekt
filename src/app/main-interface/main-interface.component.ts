@@ -29,8 +29,8 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
   @ViewChild('snav') snav!: ElementRef;
   // PASSING DATA WITH SIDEBAR-COMPONENT
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, 
-    public backend:BackendServiceService, public route:ActivatedRoute) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+    public backend: BackendServiceService, public route: ActivatedRoute) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -39,21 +39,21 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
   ngOnInit(): void {
     this.backend.setTheLoggedInUserById();
 
-    this.route.params.subscribe((params:any)=>{
-     
+    this.route.params.subscribe((params: any) => {
 
 
-       this.backend.database.collection('users').doc(params.id)
-       .valueChanges({ idField: "customIdName" }).subscribe((currentUser: any)=>{
-        console.log("hier bekommst du currenuser: ", currentUser); 
-        this.backend.loggedInUser = new User(currentUser) as User;
-       
-       console.log("hier der geupdatete User: "+this.backend.loggedInUser.allConversations);
-       });
-      
+
+      this.backend.database.collection('users').doc(params.id)
+        .valueChanges({ idField: "customIdName" }).subscribe((currentUser: any) => {
+          console.log("hier bekommst du currenuser: ", currentUser);
+          this.backend.loggedInUser = new User(currentUser) as User;
+
+          console.log("hier der geupdatete User: " + this.backend.loggedInUser.allConversations);
+        });
+
     })
-   
-  
+
+
   }
 
   ngAfterViewInit(): void {
