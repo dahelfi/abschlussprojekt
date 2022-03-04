@@ -44,10 +44,11 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
        this.backend.database.collection('users').doc(params.id)
-       .valueChanges().subscribe((currentUser: any)=>{
-        this.backend.loggedInUser = new User(currentUser);
+       .valueChanges({ idField: "customIdName" }).subscribe((currentUser: any)=>{
+        console.log("hier bekommst du currenuser: ", currentUser); 
+        this.backend.loggedInUser = new User(currentUser) as User;
        
-        //this.backend.loggedInUser.allConversations = currentUser.allConversations;
+       console.log("hier der geupdatete User: "+this.backend.loggedInUser.allConversations);
        });
       
     })

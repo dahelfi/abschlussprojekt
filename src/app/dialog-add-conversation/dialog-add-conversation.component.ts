@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Conversation } from 'src/models/conversations.class';
 import { BackendServiceService } from '../backend-service.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { BackendServiceService } from '../backend-service.service';
 export class DialogAddConversationComponent implements OnInit {
 
   static conversationsIdCounter = 0;
+  conversationObject!:Conversation;
   constructor(public backend:BackendServiceService) { }
 
   ngOnInit(): void {
@@ -18,6 +20,13 @@ export class DialogAddConversationComponent implements OnInit {
 
   public addConversationwithUser(userElement:any){
    this.backend.loggedInUser.allConversations.push(userElement.userId);
+   this.conversationObject = new Conversation;
+   this.conversationObject.conversationId = ++DialogAddConversationComponent.conversationsIdCounter;
+   this.conversationObject.participators.push(userElement.userId);
+   this.conversationObject.participators.push(this.backend.loggedInUser.userId);
+
+   this.backend.createInDatabase('conversations', this.conversationObject.toJson());
+   this.backend.updateElementInDatabase('users', this.backend.loggedInUser.toJSON(), this.backend.loggedInUser.customIdName);
    
   }
 
