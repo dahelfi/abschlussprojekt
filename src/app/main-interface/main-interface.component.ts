@@ -42,7 +42,6 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
     this.route.params.subscribe((params:any)=>{
      
 
-
        this.backend.database.collection('users').doc(params.id)
        .valueChanges({ idField: "customIdName" }).subscribe((currentUser: any)=>{
         console.log("hier bekommst du currenuser: ", currentUser); 
