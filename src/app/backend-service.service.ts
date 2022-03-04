@@ -29,7 +29,7 @@ export class BackendServiceService{
   public setTheLoggedInUser(user: User){
   
     this.loggedInUser = user;
-    
+    console.log("der eingeloggte user",this.loggedInUser)
   }
 
   public setTheLoggedInUserById(){

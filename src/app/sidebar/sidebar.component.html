@@ -1,29 +1,45 @@
 <mat-nav-list id="sidebar">
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <mat-tree-node class="highlight" *matTreeNodeDef="let node" matTreeNodePadding>
-            <!-- <button mat-icon-button disabled></button> -->
-            <div>
-                {{node.name}}
-            </div>
-        </mat-tree-node>
+    <div>
+        <!-- <div id="Channels" class="card">
 
-        <mat-tree-node class="highlight showTools" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
-                <mat-icon class="mat-icon-rtl-mirror">
-                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                </mat-icon>
-            </button>
-
-            <div class="w-100 hstack gap-3">
-                {{node.name}}
-
-                <div class="tools ms-auto">
-                    <button (click)="openDialog()" mat-icon-button>
-                        <mat-icon>add</mat-icon>
-                    </button>
+            <div class="card-body">
+                <div class="card-title hstack gap-2 showTools">
+                    <h3>
+                        Channels
+                    </h3>
+                    <div class="tools ms-auto">
+                        <button mat-icon-button (click)="openDialog()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-text" *ngFor="let channel of allChannels">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item highlight btn text-start" [routerLink]="['/channel/', channel.cid]">{{channel.name}}</li>
+                    </ul>
                 </div>
             </div>
 
-        </mat-tree-node>
-    </mat-tree>
+        </div> -->
+        <div id="Direct messages" class="card">
+            <div class="card-body">
+                <div class="card-title hstack gap-2 showTools">
+                    <h3>
+                        Direct messages
+                    </h3>
+                    <div class="tools ms-auto">
+                        <button mat-icon-button (click)="openDialog()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-text" *ngFor="let conversationID of backend.loggedInUser.allConversations">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item highlight btn text-start" (click)="addConversationIDInURL(conversationID)">{{conversationID}}</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </mat-nav-list>

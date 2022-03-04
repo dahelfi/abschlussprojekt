@@ -56,6 +56,8 @@ export class LoginComponent implements OnInit {
       
       if(array[i].password === this.inputPassword &&
         array[i].userName === this.inputUsername){
+          console.log("hier die userinfos: " ,array[i]);
+          
           this.backend.setTheLoggedInUser(new User(array[i]));
           return true;
       }
