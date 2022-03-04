@@ -15,10 +15,13 @@ export class RegisterComponent implements OnInit {
     userName: '', //Bind  to InputField username
     email: '', //Bind to InputField email
     password: '', //Bind to InputField password
-    role:''
+    role:'',
+    userId: 0,
+    allConversations: []
   };
   userObject!:User;
   role!:string;
+  static userIdCreator:number = 0;
   
 
 
@@ -40,7 +43,7 @@ export class RegisterComponent implements OnInit {
     if(this.checkIfallInputAreFilled()){
   
         if(!this.checkAllUserNames(this.backend.allUsersArrayForUse)){
-          
+          this.userJson.userId = ++RegisterComponent.userIdCreator;
           this.userJson['role'] = this.role;
           this.userObject = new User(this.userJson);
           this.backend.createInDatabase('users', this.userObject.toJSON());

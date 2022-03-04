@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendServiceService } from '../backend-service.service';
 
 @Component({
   selector: 'app-dialog-add-conversation',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogAddConversationComponent implements OnInit {
 
-  constructor() { }
+  static conversationsIdCounter = 0;
+  constructor(public backend:BackendServiceService) { }
 
   ngOnInit(): void {
+    console.log("hier dein eingeloggter user",this.backend.loggedInUser);
+    
+  }
+
+  public addConversationwithUser(userElement:any){
+   this.backend.loggedInUser.allConversations.push(userElement.userId);
+   
   }
 
 }

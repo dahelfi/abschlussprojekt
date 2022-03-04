@@ -2,14 +2,14 @@ import { BackendServiceService } from "src/app/backend-service.service";
 import { Message } from "./message.class";
 
 export class Conversation{
-    static conversationsIdCounter = 0;
+    
     conversationId:number;
-    participators: number[]; //vllt doch besser UserObjekte nehmen, nachdenken noch nachher 
+    participators: any[]; //vllt doch besser UserObjekte nehmen, nachdenken noch nachher 
     messages: any[];
     
 
     constructor(obj?:any){
-        this.conversationId = obj? obj.conversationId : ++Conversation.conversationsIdCounter;
+        this.conversationId = obj? obj.conversationId : 0;
         this.participators = obj? obj.participators : [];
         this.messages = obj? obj.messages : [];
 

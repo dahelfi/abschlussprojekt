@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
       
       if(array[i].password === this.inputPassword &&
         array[i].userName === this.inputUsername){
-          this.setTheLoggedInUser(array[i]);
+          this.backend.setTheLoggedInUser(new User(array[i]));
           return true;
       }
     }
@@ -64,16 +64,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  /**
-   * 
-   * @param userId this method puts the given userobjekt and sets it as the loggedInUser
-   */
-  setTheLoggedInUser(user:User){
   
-    this.backend.loggedInUser = user;
-   
-    
-  }
     
   
 

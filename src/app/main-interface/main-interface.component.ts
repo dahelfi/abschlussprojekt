@@ -5,6 +5,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { BackendServiceService } from '../backend-service.service';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/models/user.class';
 
 
 @Component({
@@ -27,13 +29,29 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
   @ViewChild('snav') snav!: ElementRef;
   // PASSING DATA WITH SIDEBAR-COMPONENT
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public backend:BackendServiceService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, 
+    public backend:BackendServiceService, public route:ActivatedRoute) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit(): void {
+    this.backend.setTheLoggedInUserById();
+
+    this.route.params.subscribe((params:any)=>{
+     
+
+
+       this.backend.database.collection('users').doc(params.id)
+       .valueChanges().subscribe((currentUser: any)=>{
+        this.backend.loggedInUser = new User(currentUser);
+       
+        //this.backend.loggedInUser.allConversations = currentUser.allConversations;
+       });
+      
+    })
+   
   
   }
 

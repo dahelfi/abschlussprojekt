@@ -6,20 +6,21 @@ export class User{
     email: string;
     password: string;
     role: string;
-    allConversations: number[] = [];
-    static userIdCreator:number = 0
+    allConversations: any[];
+    customIdName:string;
+    
   
 
 
  
     constructor(obj?: any){
-        this.userId = ++User.userIdCreator;
+        this.userId = obj? obj.userId : 0;
         this.userName = obj ? obj.userName : '';
         this.email = obj ? obj.email : '';
         this.password = obj ? obj.password : '';
         this.role = obj ? obj.role : '';
-        
-        
+        this.allConversations = obj? obj.allConversations : []; 
+        this.customIdName = obj? obj.customIdName : '';
     }
 
 
@@ -31,7 +32,8 @@ export class User{
             email : this.email,
             password: this.password,
             role: this.role,
-            allConversations: this.allConversations
+            allConversations: this.allConversations,
+            customIdName: this.customIdName,
         };
 
     }

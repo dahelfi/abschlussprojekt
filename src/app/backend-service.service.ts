@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ActivatedRoute } from '@angular/router';
 import { Conversation } from 'src/models/conversations.class';
 import { User } from 'src/models/user.class';
 
@@ -13,15 +14,37 @@ export class BackendServiceService{
   allUsersArrayForUse: any[] = [];//hier rein werden die valueChanges aus der Collection Users aus Firebase geladen
   idFromConversationsArray!:string;
   idFromUsersArray!:string;
-  loggedInUser!:any;//hier wird das aktuell eingeloggte userobjekt gespeichert
+  uid!: string;
+  loggedInUser!:User;//hier wird das aktuell eingeloggte userobjekt gespeichert
   allowInit: boolean = false;
   actualConversation!: Conversation;//hier wird das aktuell eingeloggte conversationobjekt gespeichert
   
  
 
-  constructor(public database:AngularFirestore) { }
+  constructor(
+    public database:AngularFirestore,
+    public route: ActivatedRoute,
+    ) { }
  
+  public setTheLoggedInUser(user: User){
   
+    this.loggedInUser = user;
+    
+  }
+
+  public setTheLoggedInUserById(){
+    if(!this.loggedInUser){
+      
+    }
+    
+  }
+
+
+  // public getUidFromURL(){
+  //   this.router.paramMap.subscribe((params)=>{
+  //     this.loggedInUser = params.get('id');
+  //   });
+  // }
 
     public createInDatabase(category:string, objectToSave:any){   
      
