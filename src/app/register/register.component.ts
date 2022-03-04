@@ -37,15 +37,13 @@ export class RegisterComponent implements OnInit {
 
   public registerUser(){
     
-    if(this.userJson.userName !== '' && this.userJson.userName !== '' &&
-    this.userJson.password !=='' && this.role !== undefined){
+    if(this.checkIfallInputAreFilled()){
   
         if(!this.checkAllUserNames(this.backend.allUsersArrayForUse)){
           
           this.userJson['role'] = this.role;
           this.userObject = new User(this.userJson);
-          this.backend.allUsersForDb.allUsersArray.push(this.userObject.toJSON());
-          this.backend.updateAllUsers();          
+          this.backend.createInDatabase('users', this.userObject.toJSON());
          
           this.router.navigate(['/login']);
         }else{
@@ -62,6 +60,9 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  public checkIfallInputAreFilled(){
+    return this.userJson.userName !== '' && this.userJson.userName !== '' &&
+  this.userJson.password !=='' && this.role !== undefined}
 
 /**
  * checks all matches if the given username is already set in the array

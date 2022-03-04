@@ -56,9 +56,8 @@ export class WorkspaceComponent implements OnInit {
     this.conversationObject = new Conversation();
     this.conversationObject.participators.push(this.backend.loggedInUser.userId);
     this.conversationObject.messages.push(this.messageObject.toJson());
-    this.backend.allConversationsForDb.allConversationsArray.push(this.conversationObject.toJson())
+  
     
-    this.backend.updateAllConversations();
 
     this.messageJson.messageContent = '';
     this.flag = true;
@@ -78,12 +77,12 @@ export class WorkspaceComponent implements OnInit {
    * mit dieser methode kann man weitere nachrichten schicken wenn die erste bereits geschickt ist und das element bereits kreeiert ist
    */
   public sendFurtherMessages(){
-    this.setConversationById(this.backend.allConversationsArrayForUse[0]);
+    
     this.messageJson.timestamp = new Date().getTime().toString();
     this.messageJson.creatorId = this.backend.loggedInUser.userId;
     this.messageObject = new Message(this.messageJson);
     this.backend.actualConversation.messages.push(this.messageObject.toJson());
-    this.updateConversation( this.backend.actualConversation.toJson());
+    
     this.messageJson.messageContent = '';
 
   }
@@ -92,15 +91,15 @@ export class WorkspaceComponent implements OnInit {
    * updates an exicting conversationselement when one message is added
    * @param conversationElement 
    */
-  public updateConversation(conversationElement:any){
-    for (let i = 0; i < this.backend.allConversationsForDb.allConversationsArray.length; i++) {
-       if(this.backend.allConversationsForDb.allConversationsArray[i].conversationId == conversationElement.conversationId){
-        this.backend.allConversationsForDb.allConversationsArray[i] = conversationElement;
-       }
+  // public updateConversation(conversationElement:any){
+  //   for (let i = 0; i < this.backend.allConversationsForDb.allConversationsArray.length; i++) {
+  //      if(this.backend.allConversationsForDb.allConversationsArray[i].conversationId == conversationElement.conversationId){
+  //       this.backend.allConversationsForDb.allConversationsArray[i] = conversationElement;
+  //      }
       
-      }
-    this.backend.updateAllConversations();
+  //     }
+  //   this.backend.updateAllConversations();
 
-  }
+  // }
 
 }

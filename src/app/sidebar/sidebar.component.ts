@@ -4,6 +4,8 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { User } from 'src/models/user.class';
 import { BackendServiceService } from '../backend-service.service';
+import { DialogAddConversationComponent } from '../dialog-add-conversation/dialog-add-conversation.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 /**
@@ -83,7 +85,7 @@ export class SidebarComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(public backend:BackendServiceService) {
+  constructor(public backend:BackendServiceService, public dialog: MatDialog) {
     this.dataSource.data = TREE_DATA;
   }
   
@@ -92,7 +94,16 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogAddConversationComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 
 
 
 }
+

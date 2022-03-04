@@ -34,21 +34,7 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngOnInit(): void {
-    this.backend.database.
-    collection('conversations')
-    .valueChanges({idField:"customIdName"})
-    .subscribe((conversations:any)=>{
-    this.backend.allConversationsArrayForUse=conversations;
-    console.log("das hier habe ich für dich in allconarray gespeichert", this.backend.allConversationsArrayForUse);
-    
-    });
-    this.backend.database.
-    collection('users')
-    .valueChanges({idField:"customIdName"})
-    .subscribe((users:any)=>{
-    this.backend.allUsersArrayForUse = users;
-
-    });
+  
   }
 
   ngAfterViewInit(): void {
