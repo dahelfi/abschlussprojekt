@@ -6,6 +6,7 @@ import { User } from 'src/models/user.class';
 import { BackendServiceService } from '../backend-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
+import { DataService } from '../data.service';
 
 
 /**
@@ -49,6 +50,7 @@ export class SidebarComponent implements OnInit {
 
   public allChannels: any[] = [];
   public allUsers: any[] = [];
+  public allMessages: any[] = [];
 
   private _transformer = (node: FoodNode, level: number) => {
     return {
@@ -76,6 +78,7 @@ export class SidebarComponent implements OnInit {
     public backend: BackendServiceService,
     public dialog: MatDialog,
     public firestore: AngularFirestore,
+    public data: DataService,
   ) {
     this.dataSource.data = TREE_DATA;
   }
@@ -92,10 +95,16 @@ export class SidebarComponent implements OnInit {
 
     this.firestore
       .collection('ChannelsLamTest')
-      .valueChanges()
+      .valueChanges({ idField: 'cid' })
       .subscribe(channel => {
         this.allChannels = channel;
-        
+      })
+
+    this.firestore
+      .collection('MessagesLamTest')
+      .valueChanges({ idField: 'mid' })
+      .subscribe(messages => {
+        this.allMessages = messages;
       })
 
   }

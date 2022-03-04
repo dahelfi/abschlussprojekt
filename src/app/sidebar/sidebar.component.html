@@ -41,7 +41,7 @@
                 </div>
                 <div class="card-text" *ngFor="let channel of allChannels">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start">{{channel.name}}</li>
+                      <li class="list-group-item highlight btn text-start" [routerLink]="['/channel/', channel.cid]">{{channel.name}}</li>
                     </ul>
                 </div>
             </div>
@@ -59,9 +59,9 @@
                         </button>
                     </div>
                 </div>
-                <div class="card-text" *ngFor="let channel of allChannels">
+                <div class="card-text" *ngFor="let messages of allMessages">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start">{{channel.name}}</li>
+                      <li class="list-group-item highlight btn text-start" [routerLink]="['/messages/', messages.cid]">{{messages.name}}</li>
                     </ul>
                 </div>
             </div>

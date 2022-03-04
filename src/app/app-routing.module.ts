@@ -8,11 +8,13 @@ import { MainInterfaceComponent } from './main-interface/main-interface.componen
 import { WorkspaceComponent } from './workspace/workspace.component';
 
 const routes: Routes = [
-{path:'', component:LoginComponent},
-{path:'register', component:RegisterComponent},
-{path:'login', component:LoginComponent},
-{path:'user/:uid', component:MainInterfaceComponent}, //user ID should be passed on localhref while going to page mainInterface
-{path:'user/:uid' + '/channel/:id', component:MainInterfaceComponent}, //channel ID should be passed on localhref while going to page workspace
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'user/:uid', component: MainInterfaceComponent }, //user ID should be passed on localhref while going to page mainInterface
+  { path: 'user/:uid' + '/channel/:cid', component: MainInterfaceComponent }, //channel ID should be passed on localhref while going to page workspace
+  { path: 'channel/:cid', component: MainInterfaceComponent },
+  { path: 'messages/:mid', component: MainInterfaceComponent },
 ];
 
 @NgModule({
