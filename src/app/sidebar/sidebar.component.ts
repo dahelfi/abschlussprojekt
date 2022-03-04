@@ -7,6 +7,7 @@ import { BackendServiceService } from '../backend-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 
 /**
@@ -79,6 +80,7 @@ export class SidebarComponent implements OnInit {
     public dialog: MatDialog,
     public firestore: AngularFirestore,
     public data: DataService,
+    public router: Router,
   ) {
     this.dataSource.data = TREE_DATA;
   }
@@ -114,5 +116,8 @@ export class SidebarComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddChannelComponent);
   }
 
+  public addChannelIdInURL(cid: any){
+    this.router.navigate(['user/' + this.data.me + '/channel/' + cid])
+  }
 
 }

@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user/:uid', component: MainInterfaceComponent }, //user ID should be passed on localhref while going to page mainInterface
   { path: 'user/:uid' + '/channel/:cid', component: MainInterfaceComponent }, //channel ID should be passed on localhref while going to page workspace
-  { path: 'channel/:cid', component: MainInterfaceComponent },
   { path: 'messages/:mid', component: MainInterfaceComponent },
 ];
 
