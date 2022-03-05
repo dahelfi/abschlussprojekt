@@ -20,6 +20,8 @@ export class WorkspaceComponent implements OnInit {
     placeholder: 'Type the content here!'
   }
 
+  public message = new Message();
+  
   constructor(
     public backend:BackendServiceService,
     public data: DataService,

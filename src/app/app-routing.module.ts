@@ -6,6 +6,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ThreadComponent } from './thread/thread.component';
 import { MainInterfaceComponent } from './main-interface/main-interface.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
+import { ChannelComponent } from './channel/channel.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
   {
     path: 'user/:uid', component: MainInterfaceComponent,
     children: [
-      { path: 'channel/:cid', component: WorkspaceComponent },
+      { path: 'channel/:cid', component: ChannelComponent },
       { path: 'messages/:mid', component: WorkspaceComponent },
     ]
   }, 

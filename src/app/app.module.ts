@@ -38,6 +38,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogAddDirectmessageComponent } from './dialog-add-directmessage/dialog-add-directmessage.component';
+import { ChannelComponent } from './channel/channel.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { DialogAddDirectmessageComponent } from './dialog-add-directmessage/dial
     ThreadComponent,
     DialogAddChannelComponent,
     DialogAddDirectmessageComponent,
+    ChannelComponent,
   ],
   imports: [
     MatDialogModule,

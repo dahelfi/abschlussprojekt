@@ -1,19 +1,11 @@
-<div id="workspace">
+<div id="workspace" >
+    <router-outlet></router-outlet>
 
-    <!-- <div *ngFor="let content2 of backend.allConversationsArrayForUse[0].allConversationsArray[0].messages"
-        style="background-color: #5221e6; color: white; height: 50px; width: 100px; border-radius: 5px; margin-bottom: 30px;display: flex; justify-content: center; align-items: center; padding: 15px;">
-        {{ content2.messageContent }}
-    </div> -->
 
-    <form (ngSubmit)="manageMessageSending()" class="position-absolute bottom-0 w-75 hstack gap-2 p-1">
+    <form (ngSubmit)="manageMessageSending()" class="messageInput hstack gap-2 p-1">
 
-        <textarea class="form-control me-auto" 
-             
-            name="test" id=""
-            cdkTextareaAutosize 
-            #autosize="cdkTextareaAutosize" 
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5">
+        <textarea class="form-control me-auto" name="test" id="" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [ngModel]="message">
         </textarea>
 
         <button type="submit" mat-icon-button>

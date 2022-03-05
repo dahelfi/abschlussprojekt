@@ -10,6 +10,8 @@ export class DataService{
   public allChannels: any[] = [];
   public allUsers: any[] = [];
   public allMessages: any[] = [];
+  public cid!: string;
+  public mid!: string;
 
   constructor(
     public firebase: AngularFirestore,
@@ -32,6 +34,13 @@ export class DataService{
   }
   public getallMessages(x: any){
     this.allMessages = x;
+  }
+
+  public getcid(x: string){
+    this.cid = x;
+  }
+  public getmid(x: string){
+    this.mid = x;
   }
 
 }

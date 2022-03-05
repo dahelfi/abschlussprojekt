@@ -11,3 +11,10 @@
 :host ::ng-deep .ck-editor__editable_inline {
     min-height: 5rem;
 }
+
+.messageInput{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

@@ -13,9 +13,9 @@
                         </button>
                     </div>
                 </div>
-                <div class="card-text" *ngFor="let channel of allChannels">
+                <div class="card-text" *ngFor="let channel of data.allChannels">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start" (click)="addChannelIdInURL(channel.cid)" [class.activeRoute]="channel.cid == cid">{{channel.name}}</li>
+                      <li class="list-group-item highlight btn text-start" (click)="addChannelIdInURL(channel.cid)" [class.activeRoute]="channel.cid == data.cid">{{channel.name}}</li>
                     </ul>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="card-text" *ngFor="let messages of allMessages">
+                <div class="card-text" *ngFor="let messages of data.allMessages">
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item highlight btn text-start" (click)="addMessagesIdInURL(messages.mid)" >{{messages.name}}</li>
                     </ul>
