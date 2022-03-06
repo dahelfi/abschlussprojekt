@@ -79,8 +79,11 @@ export class SidebarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => { });
   }
 
-  public addConversationIDInURL(cid: any){
-    this.router.navigate(['user/' + this.backend.loggedInUser.customIdName + '/conversation/' + cid])
+  public addConversationIDInURL(username: any){
+    let cId:any;
+    cId = this.backend.findConversationId(this.backend.findUserIdByName(username), this.backend.loggedInUser.userId);
+
+    this.router.navigate(['user/' + this.backend.loggedInUser.customIdName + '/conversation/' + cId])
   }
 
 

@@ -6,12 +6,14 @@ export class Conversation{
     conversationId:number;
     participators: any[]; //vllt doch besser UserObjekte nehmen, nachdenken noch nachher 
     messages: any[];
+    customIdName:string = "";
     
 
     constructor(obj?:any){
         this.conversationId = obj? obj.conversationId : 0;
         this.participators = obj? obj.participators : [];
         this.messages = obj? obj.messages : [];
+        this.customIdName = obj? obj.customIdName : '';
 
     }
 
@@ -26,7 +28,8 @@ export class Conversation{
         return{
             conversationId: this.conversationId,
             participators: this.participators,
-            messages: this.messages
+            messages: this.messages,
+            customIdName: this.customIdName
         };
     }
 

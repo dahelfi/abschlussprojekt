@@ -7,6 +7,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { BackendServiceService } from '../backend-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.class';
+import { Conversation } from 'src/models/conversations.class';
 
 
 @Component({
@@ -38,17 +39,28 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
   userObject!: User;
 
   ngOnInit(): void {
-    this.backend.setTheLoggedInUserById();
+
 
     this.route.params.subscribe((params: any) => {
-
+   
         this.backend.database.collection('users').doc(params.id)
         .valueChanges({ idField: "customIdName" }).subscribe((currentUser: any)=>{
-        console.log("hier bekommst du currenuser: ", currentUser); 
-        this.backend.loggedInUser = new User(currentUser) as User;
+        
+        this.backend.setTheLoggedInUser(new User(currentUser));
+        console.log("Hier der User: " ,this.backend.loggedInUser );
+        
        
-       console.log("hier der geupdatete User: "+this.backend.loggedInUser);
+      
+       this.backend.updateConversationPartnerArray();
        });
+     
+       
+
+       this.backend.database.collection('conversations').doc(params.cid)
+       .valueChanges({ idField: "customIdName" }).subscribe((currentConversation: any)=>{   
+       this.backend.actualConversation = new Conversation(currentConversation) as Conversation;        
+
+      });
       
     })
 

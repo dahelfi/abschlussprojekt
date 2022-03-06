@@ -21,7 +21,7 @@ export class WorkspaceComponent implements OnInit {
   };
   messageObject!: Message;
   conversationObject!: Conversation;
-  testArray:string[] = []; 
+  showAllConversation:string[] = []; 
   flag = false;
  
 
@@ -40,52 +40,25 @@ export class WorkspaceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+ 
+
   public manageMessageSending(){
-    if(!this.flag){
-      this.createFirstConversation();
-    }else{
-      this.sendFurtherMessages();
-    }
-  }
-
-  public createFirstConversation(){
   
-    this.messageJson.timestamp = new Date().getTime().toString();
-    this.messageJson.creatorId = this.backend.loggedInUser.userId;
-    this.messageObject = new Message(this.messageJson);
-    this.conversationObject = new Conversation();
-    this.conversationObject.participators.push(this.backend.loggedInUser.userId);
-    this.conversationObject.messages.push(this.messageObject.toJson());
-  
-    
-
-    this.messageJson.messageContent = '';
-    this.flag = true;
-    
-  }
-
-
-  /**
-   * here we can set the actuall conversationelement
-   * @param conversationJson 
-   */
-  public setConversationById(conversationJson:any){
-    this.backend.actualConversation = new Conversation(conversationJson.allConversationsArray[0])// hier wird die id auch hardgecoded soll nachher dynamisch sein
-  }
-
-  /**
-   * mit dieser methode kann man weitere nachrichten schicken wenn die erste bereits geschickt ist und das element bereits kreeiert ist
-   */
-  public sendFurtherMessages(){
-    
     this.messageJson.timestamp = new Date().getTime().toString();
     this.messageJson.creatorId = this.backend.loggedInUser.userId;
     this.messageObject = new Message(this.messageJson);
     this.backend.actualConversation.messages.push(this.messageObject.toJson());
-    
     this.messageJson.messageContent = '';
-
+    
+    this.backend.updateElementInDatabase("conversations",this.backend.actualConversation.toJson(),this.backend.actualConversation.customIdName);
+    
   }
+
+
+ 
+  /**
+   * mit dieser methode kann man weitere nachrichten schicken wenn die erste bereits geschickt ist und das element bereits kreeiert ist
+
 
   /**
    * updates an exicting conversationselement when one message is added

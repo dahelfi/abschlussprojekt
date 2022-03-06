@@ -1,4 +1,18 @@
-<div id="workspace">
+<div id="workspace" style="display: flex; flex-direction: column;">
+
+    <div *ngFor="let content of backend.actualConversation.messages" style="display: flex; justify-content: center; align-items: center; color: white;
+    background-color: #5221e6; border-radius: 5px; margin-bottom: 20px; width: 100px; height: 50px; flex-direction: column;">
+
+        <div style="color: orange; font-size: 8px; width: 80px; justify-content: baseline;">
+        {{ content.timestamp }}
+        </div>
+        <div>
+            {{ content.messageContent }}
+        </div>
+
+    
+
+    </div>
 
 
     <form (ngSubmit)="manageMessageSending()" class="fixed-bottom hstack gap-2 p-1">
