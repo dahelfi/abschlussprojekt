@@ -30,6 +30,8 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
   @ViewChild('snav') snav!: ElementRef;
   // PASSING DATA WITH SIDEBAR-COMPONENT
 
+  innerWidth = window.innerWidth;
+  
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     public backend: BackendServiceService, public route: ActivatedRoute) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');

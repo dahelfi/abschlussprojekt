@@ -9,52 +9,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
-/**
- * Food data with nested structure.
- * Each node has a name and an optional list of children.
- */
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-}
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Channels',
-    children: [{ name: 'Angular' }, { name: 'HTML-CSS' }, { name: 'JavaScript' }],
-  },
-  {
-    name: 'Direct messages',
-    children: [
-      {
-        name: 'Mihai Bala',
-        // children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
-      },
-      {
-        name: 'Junus Eva',
-        // children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-      {
-        name: 'Manu Mama',
-        // children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-    ],
-  },
-];
-
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
-
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
+
 export class SidebarComponent implements OnInit {
   user!: User;
 
