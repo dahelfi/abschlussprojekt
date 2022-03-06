@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
     public data: DataService,
     public router: Router,
     private activatedRoute: ActivatedRoute,
-  ) {
+  ) { 
 
     this.firestore
       .collection('ChannelsLamTest')
@@ -62,28 +62,13 @@ export class SidebarComponent implements OnInit {
         mergeMap((route: any) => route.paramMap),
         tap((paramMap: any) => {
           this.data.getcid(paramMap.params.cid);
+          this.data.getcurrentChannelMessages(paramMap.params.cid)
         })
-      ).subscribe()
-      
-  }
+      ).subscribe();
+}
 
   ngOnInit(): void {
-
-    // this.route.firstChild.paramMap.subscribe(params =>{
-    //   this.cid = params.get('cid');
-    // })
-
-  }
-
-  public getCollectionFromFirebase(collectionName: string, customIdName: string, array: any) {
-    this.firestore
-      .collection(collectionName)
-      .valueChanges({ idField: customIdName })
-      .subscribe(collection => {
-        array = collection;
-
-        console.log(collectionName, array);
-      });
+    // ALL FUNCTIONS INSIDE CONSTRUCTURE RIGHT NOW WON'T WORK IMMEDIATELY IF THEY ARE HERE
   }
 
   openDialogAddChannel(): void {

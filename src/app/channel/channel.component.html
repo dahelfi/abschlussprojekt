@@ -1,4 +1,40 @@
-<div *ngFor="let channel of data.allChannels">
-    <h1 *ngIf="channel.cid == data.cid">{{channel.name}}</h1>
+<div id="channel">
+    <mat-toolbar class="hstack gap-2">
 
+        <span *ngFor="let channel of data.allChannels">
+            <h1 *ngIf="channel.cid == data.cid">{{channel.name}}</h1>
+        </span>
+
+        <button type="submit" mat-stroked-button (click)="join()" class="ms-auto">
+            Join
+        </button>
+
+    </mat-toolbar>
+
+    <div *ngFor="let msg of data.currentChannel.messages">
+        <p>
+            <mat-card>
+                <mat-card-subtitle>{{msg.creatorId}}</mat-card-subtitle>
+                <mat-card-subtitle>{{msg.email}}</mat-card-subtitle>
+                <mat-card-content>{{msg.messageContent}}</mat-card-content>
+            </mat-card>
+        </p>
+
+    </div>
+
+
+    <form class="messageInput hstack gap-2 p-1">
+
+        <textarea class="form-control me-auto" name="test" id="" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [(ngModel)]="messageContent" (keydown)="handleSubmit($event)">
+    </textarea>
+
+        <button type="submit" mat-icon-button (click)="send()">
+            <mat-icon>send</mat-icon>
+        </button>
+
+    </form>
+
+
+    <ckeditor class="ckeditor d-none" [editor]="Editor" data=""></ckeditor>
 </div>
