@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   };
   userObject!:User;
   role!:string;
-  static userIdCreator:number = 0;
+  
   
 
 
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
     if(this.checkIfallInputAreFilled()){
   
         if(!this.checkAllUserNames(this.backend.allUsersArrayForUse)){
-          this.userJson.userId = ++RegisterComponent.userIdCreator;
+          this.userJson.userId = this.backend.allUsersArrayForUse.length + 1;
           this.userJson['role'] = this.role;
           this.userObject = new User(this.userJson);
           this.backend.createInDatabase('users', this.userObject.toJSON());

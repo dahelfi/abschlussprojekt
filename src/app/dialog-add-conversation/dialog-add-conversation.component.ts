@@ -11,7 +11,7 @@ import { BackendServiceService } from '../backend-service.service';
 })
 export class DialogAddConversationComponent implements OnInit {
 
-  static conversationsIdCounter = 0;
+  
   conversationObject!:Conversation;
   constructor(public backend:BackendServiceService) { }
   userObject!:User;
@@ -25,7 +25,7 @@ export class DialogAddConversationComponent implements OnInit {
     if(!this.backend.findConversationId(this.backend.loggedInUser.userId, userElement.userId)){
 
    this.conversationObject = new Conversation;
-   this.conversationObject.conversationId = ++DialogAddConversationComponent.conversationsIdCounter;
+   this.conversationObject.conversationId = this.backend.allConversationsArrayForUse.length+1;
    this.backend.loggedInUser.allConversations.push(this.conversationObject.conversationId);
    this.conversationObject.participators.push(userElement.userId);
    this.conversationObject.participators.push(this.backend.loggedInUser.userId);
