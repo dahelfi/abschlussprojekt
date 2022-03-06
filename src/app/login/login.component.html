@@ -1,19 +1,28 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Log in</mat-card-title>
-      </mat-card-header>
+  <mat-card class="box">
+
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
       <form class="example-form">
-        <mat-card-content>
-          <mat-form-field class="example-full-width">
-            <input [(ngModel)]="inputUsername" name="inputUsername" matInput placeholder="Username">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input type="password" name="inputPassword" [(ngModel)]="inputPassword" matInput placeholder="Password">
-          </mat-form-field>
-        </mat-card-content>
-        <button (click)="logIn()" mat-stroked-button color="accent" class="btn-block">Log in</button>
-        <button routerLink="main-interface"  mat-stroked-button color="accent" class="btn-block">GUEST</button>
+
+        <mat-form-field class="example-full-width">
+          <input [(ngModel)]="inputUsername" name="inputUsername" matInput placeholder="Username">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="password" name="inputPassword" [(ngModel)]="inputPassword" matInput placeholder="Password">
+        </mat-form-field>
+
+        <div class="space mt-3 mb-3"></div>
+
+        <button (click)="logIn()" mat-raised-button color="primary" class="btn-block">Log in</button>
+        <mat-divider [inset]="true" class="mt-3 mb-3"></mat-divider>
+        <button mat-raised-button color="secondary" class="btn-block" routerLink="/register">Create new account</button>
+
       </form>
-    </mat-card>
-  </div>
+    </mat-card-content>
+
+  </mat-card>
+</div>
