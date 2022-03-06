@@ -1,27 +1,6 @@
 <mat-nav-list id="sidebar">
-    <div>
-        <!-- <div id="Channels" class="card">
-
-            <div class="card-body">
-                <div class="card-title hstack gap-2 showTools">
-                    <h3>
-                        Channels
-                    </h3>
-                    <div class="tools ms-auto">
-                        <button mat-icon-button (click)="openDialog()">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-text" *ngFor="let channel of allChannels">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start" [routerLink]="['/channel/', channel.cid]">{{channel.name}}</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div> -->
         <div id="Direct messages" class="card">
+
             <div class="card-body">
                 <div class="card-title hstack gap-2 showTools">
                     <h3>
@@ -33,6 +12,7 @@
                         </button>
                     </div>
                 </div>
+                
                 <div class="card-text" *ngFor="let userName of backend.conversationPartnerByName">
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item highlight btn text-start" (click)="addConversationIDInURL(userName)">{{userName}}</li>
@@ -41,5 +21,4 @@
             </div>
 
         </div>
-    </div>
 </mat-nav-list>
