@@ -1,29 +1,20 @@
 <div id="workspace" style="display: flex; flex-direction: column;">
 
-    <div *ngFor="let content of backend.actualConversation.messages" style="display: flex; justify-content: center; align-items: center; color: white;
-    background-color: #5221e6; border-radius: 5px; margin-bottom: 20px; width: 100px; height: 50px; flex-direction: column;">
+    <p>
+        <mat-card *ngFor="let content of backend.actualConversation.messages">
 
-        <div style="color: orange; font-size: 8px; width: 80px; justify-content: baseline;">
-        {{ content.timestamp }}
-        </div>
-        <div>
-            {{ content.messageContent }}
-        </div>
+            <mat-card-title>{{ content.creatorId }}</mat-card-title>
+            <mat-card-subtitle>{{ content.timestamp }}</mat-card-subtitle>
+            <mat-card-content>{{ content.messageContent }}</mat-card-content>
 
-    
-
-    </div>
+        </mat-card>
+    </p>
 
 
-    <form (ngSubmit)="manageMessageSending()" class="fixed-bottom hstack gap-2 p-1">
+    <form (ngSubmit)="manageMessageSending()" class="p-1 mb-1 hstack gap-2 position-absolute bottom-0 right-0 w-100">
 
-        <textarea class="form-control me-auto" 
-            [(ngModel)]="messageJson.messageContent" 
-            name="test" id=""
-            cdkTextareaAutosize 
-            #autosize="cdkTextareaAutosize" 
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5">
+        <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
         </textarea>
 
         <button type="submit" mat-icon-button>
