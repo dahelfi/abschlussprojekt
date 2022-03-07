@@ -12,9 +12,14 @@
 
 
     <form (ngSubmit)="manageMessageSending()" class="p-1 mb-1 hstack gap-2 position-absolute bottom-0 right-0 w-100">
-
-        <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
-            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
+      
+        <textarea class="form-control me-auto" 
+            [(ngModel)]="messageJson.messageContent" 
+            name="test" id=""
+            cdkTextareaAutosize 
+            #autosize="cdkTextareaAutosize" 
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5">
         </textarea>
 
         <button type="submit" mat-icon-button>
