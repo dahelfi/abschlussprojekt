@@ -1,25 +1,19 @@
-<div id="workspace" style="display: flex; flex-direction: column;">
+<div id="workspace">
 
-    <p>
-        <mat-card *ngFor="let content of backend.actualConversation.messages">
+    <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages" style="overflow-y: scroll;">
+        <p>
+            <mat-card>
+                <mat-card-title>{{ content.creatorId }}</mat-card-title>
+                <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
+                <mat-card-content>{{ content.messageContent }}</mat-card-content>
+            </mat-card>
+        </p>
+    </div>
 
-            <mat-card-title>{{ content.creatorId }}</mat-card-title>
-            <mat-card-subtitle>{{ content.timestamp | date: 'dd.mm.y HH:mm' }}</mat-card-subtitle>
-            <mat-card-content>{{ content.messageContent }}</mat-card-content>
+    <form #messageInput="ngForm" (ngSubmit)="manageMessageSending()" class="hstack gap-2 messageInputField">
 
-        </mat-card>
-    </p>
-
-
-    <form (ngSubmit)="manageMessageSending()" class="p-1 mb-1 hstack gap-2 position-absolute bottom-0 right-0 w-100">
-      
-        <textarea class="form-control me-auto" 
-            [(ngModel)]="messageJson.messageContent" 
-            name="test" id=""
-            cdkTextareaAutosize 
-            #autosize="cdkTextareaAutosize" 
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5">
+        <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" autofocus>
         </textarea>
 
         <button type="submit" mat-icon-button>
@@ -28,6 +22,6 @@
 
     </form>
 
-
     <ckeditor class="ckeditor d-none" [editor]="Editor" data=""></ckeditor>
+
 </div>

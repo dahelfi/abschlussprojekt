@@ -55,6 +55,7 @@ export class WorkspaceComponent implements OnInit {
       
       this.backend.updateElementInDatabase("conversations",this.backend.actualConversation.toJson(),this.backend.actualConversation.customIdName);
 
+      
     }
    
     
