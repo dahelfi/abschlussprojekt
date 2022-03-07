@@ -10,12 +10,10 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { 
-    path: 'user/:id', component: MainInterfaceComponent ,
-    children: [
-      { path: 'conversation/:cid', component: MainInterfaceComponent },
-    ]
-  },
+  { path: 'user/:id', component: MainInterfaceComponent },
+  { path: 'user/:id' + '/conversation/:cid', component: MainInterfaceComponent },
+  { path: 'conversation/:cid', component: MainInterfaceComponent },
+  { path: 'main-interface', component: MainInterfaceComponent }
 ];
 
 @NgModule({

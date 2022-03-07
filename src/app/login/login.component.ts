@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
   if(this.checkAllInputFields()){
     
       if(this.checkCredentials(this.backend.allUsersArrayForUse)){
-        this.router.navigate(['user/' + this.backend.loggedInUser.customIdName]);
         
+        this.router.navigate(['user/' + this.backend.loggedInUser.customIdName]);
       
       }else{
         alert('Password or Username are incorrect try again');
