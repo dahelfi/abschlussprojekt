@@ -16,7 +16,7 @@
             cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" autofocus>
         </textarea>
 
-        <button type="submit" mat-icon-button>
+        <button type="submit" mat-icon-button (click)="messageInput.resetForm()">
             <mat-icon>send</mat-icon>
         </button>
 
