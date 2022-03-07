@@ -1,6 +1,6 @@
 <div id="workspace">
 
-    <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages" style="overflow-y: scroll;">
+    <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages" style="overflow-y: scroll;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
         <p>
             <mat-card>
                 <mat-card-title>{{ content.creatorId }}</mat-card-title>
