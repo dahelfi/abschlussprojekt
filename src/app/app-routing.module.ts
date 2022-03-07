@@ -7,14 +7,14 @@ import { ThreadComponent } from './thread/thread.component';
 import { MainInterfaceComponent } from './main-interface/main-interface.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'user/:id', component: MainInterfaceComponent },
-  { path: 'user/:id' + '/conversation/:cid', component: MainInterfaceComponent },
-  { path: 'conversation/:cid', component: MainInterfaceComponent },
-  { path: 'main-interface', component: MainInterfaceComponent }
-];
+  {path:'', component:LoginComponent},
+  {path:'login', component:LoginComponent},
+  {path:'register', component:RegisterComponent},
+  {path:'user/:id', component:MainInterfaceComponent},
+  {path:'user/:id' + '/conversation/:cid', component:MainInterfaceComponent},
+  {path:'conversation/:cid', component:MainInterfaceComponent},
+  {path:'main-interface', component:MainInterfaceComponent}
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
