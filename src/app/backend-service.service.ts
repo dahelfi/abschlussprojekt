@@ -31,12 +31,20 @@ export class BackendServiceService{
   public setTheLoggedInUser(user: User){
   
     this.loggedInUser = user;
-    console.log("der eingeloggte user",this.loggedInUser)
+    
+  }
+
+  public setTheActualConversation(conversation: Conversation){
+    this.actualConversation = conversation;
   }
 
 
+  /**
+   * methode unbedingt nochmal schöner schreiben
+   */
+
   public updateConversationPartnerArray(){
-    
+   
     let conversationElement:any;
     this.conversationPartnerByName = [];
     for (let i = 0; i < this.loggedInUser.allConversations.length; i++) {
@@ -45,9 +53,17 @@ export class BackendServiceService{
      
       
       if(conversationElement){
+        let counter:number = 0;
         for (let i = 0; i < conversationElement.participators.length; i++) {
+          
           if(conversationElement.participators[i] != this.loggedInUser.userId){
             this.conversationPartnerByName.push(this.findUserById(conversationElement.participators[i]).userName);
+
+          }else if(conversationElement.participators[i] == this.loggedInUser.userId){
+            counter++;
+            if(counter==2){
+              this.conversationPartnerByName.push(this.loggedInUser.userName);
+            }
 
           }
           

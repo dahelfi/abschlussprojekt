@@ -44,6 +44,8 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
     this.route.params.subscribe((params: any) => {
+
+      console.log("das sind die paramter",params);
    
         this.backend.database.collection('users').doc(params.id)
         .valueChanges({ idField: "customIdName" }).subscribe((currentUser: any)=>{
@@ -60,7 +62,7 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
 
        this.backend.database.collection('conversations').doc(params.cid)
        .valueChanges({ idField: "customIdName" }).subscribe((currentConversation: any)=>{   
-       this.backend.actualConversation = new Conversation(currentConversation) as Conversation;        
+       this.backend.setTheActualConversation(new Conversation(currentConversation));       
 
       });
       

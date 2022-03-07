@@ -4,7 +4,7 @@
         <mat-card *ngFor="let content of backend.actualConversation.messages">
 
             <mat-card-title>{{ content.creatorId }}</mat-card-title>
-            <mat-card-subtitle>{{ content.timestamp }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ content.timestamp | date }}</mat-card-subtitle>
             <mat-card-content>{{ content.messageContent }}</mat-card-content>
 
         </mat-card>

@@ -43,14 +43,20 @@ export class WorkspaceComponent implements OnInit {
  
 
   public manageMessageSending(){
-  
-    this.messageJson.timestamp = new Date().getTime().toString();
-    this.messageJson.creatorId = this.backend.loggedInUser.userId;
-    this.messageObject = new Message(this.messageJson);
-    this.backend.actualConversation.messages.push(this.messageObject.toJson());
-    this.messageJson.messageContent = '';
-    
-    this.backend.updateElementInDatabase("conversations",this.backend.actualConversation.toJson(),this.backend.actualConversation.customIdName);
+    if(this.messageJson.messageContent.length >= 0){
+
+      this.messageJson.timestamp = new Date().getTime().toString();
+      this.messageJson.creatorId = this.backend.loggedInUser.userId;
+      this.messageObject = new Message(this.messageJson);
+      console.log("hier die aktuelle conversation", this.backend.actualConversation);
+      
+      this.backend.actualConversation.messages.push(this.messageObject.toJson());
+      this.messageJson.messageContent = '';
+      
+      this.backend.updateElementInDatabase("conversations",this.backend.actualConversation.toJson(),this.backend.actualConversation.customIdName);
+
+    }
+   
     
   }
 
