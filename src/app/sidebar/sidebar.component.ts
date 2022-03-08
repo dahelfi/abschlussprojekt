@@ -53,6 +53,10 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['user/' + this.backend.loggedInUser.customIdName + '/conversation/' + cId])
   }
 
+  public addChannelConversationInURL(channel:any){
+    this.router.navigate(['user/' + this.backend.loggedInUser.customIdName + '/conversation/' + channel.customIdName])
+  }
+
 
 }
 

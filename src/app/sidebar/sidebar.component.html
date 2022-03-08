@@ -13,9 +13,9 @@
                     </div>
                 </div>
                 
-                <div class="card-text" *ngFor="let channelName of backend.allChannelsByName">
+                <div class="card-text" *ngFor="let channel of backend.allSubscribedChannels">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start" (click)="addConversationIDInURL(channelName)">{{ channelName }}</li>
+                      <li class="list-group-item highlight btn text-start" (click)="addChannelConversationInURL(channel)">{{ channel['channelName'] }}</li>
                     </ul>
                 </div>
                 <div class="card-title hstack gap-2 showTools">

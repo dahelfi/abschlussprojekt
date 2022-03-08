@@ -26,12 +26,23 @@ export class DialogAddChannelComponent implements OnInit {
       this.conversationObject.participators.push(this.backend.loggedInUser.userId);
       this.backend.loggedInUser.allConversations.push(this.conversationObject.conversationId);
       this.backend.createInDatabase('conversations', this.conversationObject.toJson());
+      this.backend.updateElementInDatabase('users', this.backend.loggedInUser.toJSON(), this.backend.loggedInUser.customIdName);
       this.channelName='';
     }
 
   }
 
   public addChannelToUser(channel:any){
+    this.conversationObject = new Conversation(channel);
+    if(!this.backend.checkIfChannelAlreadySubscribed(this.conversationObject.conversationId)){
+
+      this.conversationObject.participators.push(this.backend.loggedInUser.userId);
+      this.backend.loggedInUser.allConversations.push(this.conversationObject.conversationId);
+      this.backend.updateElementInDatabase("users",this.backend.loggedInUser.toJSON(), this.backend.loggedInUser.customIdName);
+      this.backend.updateElementInDatabase("conversations", this.conversationObject.toJson(), this.conversationObject.customIdName);
+
+    }
+ 
 
   }
 
