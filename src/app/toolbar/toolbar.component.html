@@ -1,7 +1,15 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button (click)="snav.toggle()">
-        <mat-icon>space_dashboard</mat-icon>
-    </button>
+<mat-toolbar color="primary" class="usernameclass">
+    <div style="display: flex; align-items: center;">
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>space_dashboard</mat-icon>
+        </button>
+        
+        <h1 class="logo">SLACK FAKE</h1>
+
+    </div>
     
-    <h1 class="logo">SLACK FAKE</h1>
+
+    <div>
+        <h1>{{ this.backend.loggedInUser.userName }}</h1>
+    </div>
 </mat-toolbar>
