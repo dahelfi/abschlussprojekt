@@ -1,22 +1,24 @@
 <div id="workspace">
 
-    <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages" style="overflow-y: scroll;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-        <p>
-            <mat-card>
+    <div style="overflow-y: scroll;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <!-- now we have an Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for 'scrollTop': '892'. Current value: '1020'.. Find more at https://angular.io/errors/NG0100 -->
+        <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages">
+            <mat-card class="m-3">
                 <mat-card-title>{{ content.creatorId }}</mat-card-title>
                 <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
                 <mat-card-content>{{ content.messageContent }}</mat-card-content>
             </mat-card>
-        </p>
+        </div>
     </div>
 
-    <form #messageInput="ngForm" (ngSubmit)="manageMessageSending()" class="hstack gap-2 messageInputField">
+    <form #messageInput="ngForm" (ngSubmit)="manageMessageSending(); messageInput.resetForm() "
+        class="hstack gap-2 messageInputField">
 
         <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
             cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" autofocus>
         </textarea>
 
-        <button type="submit" mat-icon-button (click)="messageInput.resetForm()">
+        <button type="submit" mat-icon-button>
             <mat-icon>send</mat-icon>
         </button>
 
