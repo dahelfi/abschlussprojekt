@@ -1,8 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { user } from 'rxfire/auth';
 import { Conversation } from 'src/models/conversations.class';
 import { User } from 'src/models/user.class';
 
@@ -12,6 +10,7 @@ import { User } from 'src/models/user.class';
 })
 export class BackendServiceService{
   allConversationsArrayForUse: any[] =[];
+  allChannelsArrayForUse:any[] = [];
   allUsersArrayForUse: any[] = [];//hier rein werden die valueChanges aus der Collection Users aus Firebase geladen
   idFromConversationsArray!:string;
   idFromUsersArray!:string;
@@ -19,7 +18,8 @@ export class BackendServiceService{
   loggedInUser!:User;//hier wird das aktuell eingeloggte userobjekt gespeichert
   allowInit: boolean = false;
   actualConversation!: Conversation;//hier wird das aktuell eingeloggte conversationobjekt gespeichert
-  conversationPartnerByName:string[] = [];  
+  conversationPartnerByName:string[] = [];
+  allChannelsByName:string[] = [];  
   
  
 
@@ -84,6 +84,14 @@ export class BackendServiceService{
     }
 
     return tempId;
+  }
+
+  public sortAllChannelsAndConversations(){
+    for (let i = 0; i < this.allConversationsArrayForUse.length; i++) {
+      if(this.allConversationsArrayForUse[i].channelName != ''){
+          this.allChannelsArrayForUse.push(this.allConversationsArrayForUse[i]);
+      }  
+    }
   }
 
   public findConversationById(conversationId:number){

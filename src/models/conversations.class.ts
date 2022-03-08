@@ -4,9 +4,11 @@ import { Message } from "./message.class";
 export class Conversation{
     
     conversationId:number;
+    channelName:string = '';
     participators: any[]; //vllt doch besser UserObjekte nehmen, nachdenken noch nachher 
     messages: any[];
     customIdName:string = "";
+    
     
 
     constructor(obj?:any){
@@ -14,6 +16,7 @@ export class Conversation{
         this.participators = obj? obj.participators : [];
         this.messages = obj? obj.messages : [];
         this.customIdName = obj? obj.customIdName : '';
+        this.channelName = obj? obj.channelName : '';
 
     }
 
@@ -29,7 +32,8 @@ export class Conversation{
             conversationId: this.conversationId,
             participators: this.participators,
             messages: this.messages,
-            customIdName: this.customIdName
+            customIdName: this.customIdName,
+            channelName: this.channelName,
         };
     }
 

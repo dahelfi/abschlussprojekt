@@ -1,0 +1,38 @@
+<mat-card >
+    <h3>Join existing Channels</h3>
+    <table class="user-table">
+      <tr>
+       <th>Channel</th>
+      </tr>
+ 
+      <tr *ngFor="let channel of backend.allChannelsArrayForUse" (click)="addChannelToUser(channel)">
+        <td>{{ channel['channelName'] }}</td>
+        
+      </tr>
+ 
+ 
+   
+ 
+    </table>
+
+    <div>
+        <h3>Create a new Channel</h3>
+        <div>
+            <form (ngSubmit)="createANewChannel()" style="display: flex;">
+      
+                <textarea class="form-control me-auto" 
+                    [(ngModel)]="channelName" 
+                    name="test" id=""
+                    cdkTextareaAutosize>
+                </textarea>
+        
+                <button style="margin-left: 20px;" type="submit" mat-icon-button>
+                    Create
+                </button>
+        
+            </form>
+        </div>
+    </div>
+  
+   </mat-card>
+ 

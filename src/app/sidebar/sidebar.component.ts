@@ -4,9 +4,10 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { User } from 'src/models/user.class';
 import { BackendServiceService } from '../backend-service.service';
-import { DialogAddConversationComponent } from '../dialog-add-conversation/dialog-add-conversation.component';
+import { DialogAddMessageComponent } from '../dialog-add-message/dialog-add-message.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 
 
 @Component({
@@ -33,8 +34,14 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogAddConversationComponent);
+  openDialogMessage() {
+    const dialogRef = this.dialog.open(DialogAddMessageComponent);
+
+    dialogRef.afterClosed().subscribe(result => { });
+  }
+
+  openDialogChannel() {
+    const dialogRef = this.dialog.open(DialogAddChannelComponent);
 
     dialogRef.afterClosed().subscribe(result => { });
   }

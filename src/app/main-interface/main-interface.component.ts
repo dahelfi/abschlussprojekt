@@ -64,6 +64,8 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
        .valueChanges({ idField: "customIdName" }).subscribe((currentConversation: any)=>{   
        this.backend.setTheActualConversation(new Conversation(currentConversation));       
 
+
+       this.backend.sortAllChannelsAndConversations();
       });
       
     })

@@ -5,11 +5,11 @@ import { User } from 'src/models/user.class';
 import { BackendServiceService } from '../backend-service.service';
 
 @Component({
-  selector: 'app-dialog-add-conversation',
-  templateUrl: './dialog-add-conversation.component.html',
-  styleUrls: ['./dialog-add-conversation.component.scss']
+  selector: 'app-dialog-add-message',
+  templateUrl: './dialog-add-message.component.html',
+  styleUrls: ['./dialog-add-message.component.scss']
 })
-export class DialogAddConversationComponent implements OnInit {
+export class DialogAddMessageComponent implements OnInit {
 
   
   conversationObject!:Conversation;

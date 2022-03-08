@@ -36,8 +36,10 @@ import { ThreadComponent } from './thread/thread.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { DialogAddConversationComponent } from './dialog-add-conversation/dialog-add-conversation.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { DialogAddMessageComponent } from './dialog-add-message/dialog-add-message.component';
+import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+
 
 
 @NgModule({
@@ -50,7 +52,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     ToolbarComponent,
     WorkspaceComponent,
     ThreadComponent,
-    DialogAddConversationComponent,
+    DialogAddMessageComponent,
+    DialogAddChannelComponent,
  
   ],
   imports: [

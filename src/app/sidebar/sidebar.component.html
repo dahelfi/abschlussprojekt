@@ -4,10 +4,26 @@
             <div class="card-body">
                 <div class="card-title hstack gap-2 showTools">
                     <h3>
+                        Channels
+                    </h3>
+                    <div class="tools ms-auto">
+                        <button mat-icon-button (click)="openDialogChannel()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card-text" *ngFor="let channelName of backend.allChannelsByName">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item highlight btn text-start" (click)="addConversationIDInURL(channelName)">{{ channelName }}</li>
+                    </ul>
+                </div>
+                <div class="card-title hstack gap-2 showTools">
+                    <h3>
                         Direct messages
                     </h3>
                     <div class="tools ms-auto">
-                        <button mat-icon-button (click)="openDialog()">
+                        <button mat-icon-button (click)="openDialogMessage()">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
