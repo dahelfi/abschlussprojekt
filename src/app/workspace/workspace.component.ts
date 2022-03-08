@@ -13,7 +13,7 @@ import { BackendServiceService } from '../backend-service.service';
 export class WorkspaceComponent implements OnInit {
 
   public Editor = ClassicEditor;
-  messageJson={
+  messageJson = {
     creatorId: 0,
     messageContent: "",
     timestamp: ''
@@ -21,9 +21,9 @@ export class WorkspaceComponent implements OnInit {
   };
   messageObject!: Message;
   conversationObject!: Conversation;
-  showAllConversation:string[] = []; 
+  showAllConversation: string[] = [];
   flag = false;
- 
+
 
   public config = {
     placeholder: 'Type the content here!'
@@ -35,33 +35,27 @@ export class WorkspaceComponent implements OnInit {
       `Lorem`,
   );
 
-  constructor(public backend:BackendServiceService) { }
+  constructor(public backend: BackendServiceService) { }
 
   ngOnInit(): void {
   }
 
- 
 
-  public manageMessageSending(){
-    if(this.messageJson.messageContent.length >= 0){
 
+  public manageMessageSending() {
+    if (this.messageJson.messageContent !== null) {
       this.messageJson.timestamp = new Date().getTime().toString();
       this.messageJson.creatorId = this.backend.loggedInUser.userId;
       this.messageObject = new Message(this.messageJson);
-      console.log("hier die aktuelle conversation", this.backend.actualConversation);
-      
       this.backend.actualConversation.messages.push(this.messageObject.toJson());
       this.messageJson.messageContent = '';
-      
-      this.backend.updateElementInDatabase("conversations",this.backend.actualConversation.toJson(),this.backend.actualConversation.customIdName);
 
+      this.backend.updateElementInDatabase("conversations", this.backend.actualConversation.toJson(), this.backend.actualConversation.customIdName);
     }
-   
-    
   }
 
 
- 
+
   /**
    * mit dieser methode kann man weitere nachrichten schicken wenn die erste bereits geschickt ist und das element bereits kreeiert ist
 
@@ -75,7 +69,7 @@ export class WorkspaceComponent implements OnInit {
   //      if(this.backend.allConversationsForDb.allConversationsArray[i].conversationId == conversationElement.conversationId){
   //       this.backend.allConversationsForDb.allConversationsArray[i] = conversationElement;
   //      }
-      
+
   //     }
   //   this.backend.updateAllConversations();
 

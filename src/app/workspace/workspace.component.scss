@@ -1,8 +1,12 @@
 #workspace {
     position: inherit;
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-.ckeditor{
+.ckeditor {
     position: fixed;
     bottom: 1rem;
     z-index: 1;
