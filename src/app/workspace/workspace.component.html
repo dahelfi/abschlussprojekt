@@ -12,11 +12,13 @@
     </div>
 
     <form #messageInput="ngForm" (ngSubmit)="manageMessageSending(); messageInput.resetForm() "
-        class="hstack gap-2 messageInputField">
+        class="hstack p-3 messageInputField">
 
         <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
             cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" autofocus>
         </textarea>
+        <!-- <ckeditor class="ckeditor me-auto" [editor]="Editor" data=""[(ngModel)]="messageJson.messageContent" name="test"
+        cdkTextareaAutosize  cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></ckeditor> -->
 
         <button type="submit" mat-icon-button>
             <mat-icon>send</mat-icon>
@@ -24,6 +26,5 @@
 
     </form>
 
-    <ckeditor class="ckeditor d-none" [editor]="Editor" data=""></ckeditor>
 
 </div>

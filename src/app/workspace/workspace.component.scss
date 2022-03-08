@@ -6,11 +6,7 @@
     justify-content: flex-end;
 }
 
-.ckeditor {
-    position: fixed;
-    bottom: 1rem;
-    z-index: 1;
-}
+
 :host ::ng-deep .ck-editor__editable_inline {
-    min-height: 5rem;
+    min-height: 1rem;
 }
