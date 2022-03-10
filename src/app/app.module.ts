@@ -39,6 +39,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogAddMessageComponent } from './dialog-add-message/dialog-add-message.component';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+import { DialogSentImageComponent } from './dialog-sent-image/dialog-sent-image.component';
 
 
 
@@ -54,6 +55,7 @@ import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-chann
     ThreadComponent,
     DialogAddMessageComponent,
     DialogAddChannelComponent,
+    DialogSentImageComponent,
  
   ],
   imports: [

@@ -11,19 +11,34 @@
         </div>
     </div>
 
-    <form #messageInput="ngForm" (ngSubmit)="manageMessageSending(); messageInput.resetForm() "
-        class="hstack gap-2 messageInputField">
 
-        <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
-            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" autofocus>
-        </textarea>
+    <div style="display: flex;">
 
-        <button type="submit" mat-icon-button>
-            <mat-icon>send</mat-icon>
+
+        <button (click)="file.click()" mat-icon-button>
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" #file style="position: fixed; top: -100em;">
+            <mat-icon>photo_camera</mat-icon>
         </button>
+        <form #messageInput="ngForm" (ngSubmit)="manageMessageSending(); messageInput.resetForm()"
+            class="hstack gap-2 messageInputField" style="width: 100%;">
+    
+            
+          
+    
+            <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
+                cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" autofocus>
+            </textarea>
+    
+            
+            <button type="submit" mat-icon-button>
+                <mat-icon>send</mat-icon>
+            </button>
+    
+        </form>
+    
+    </div>
 
-    </form>
 
-    <ckeditor class="ckeditor d-none" [editor]="Editor" data=""></ckeditor>
+   
 
 </div>
