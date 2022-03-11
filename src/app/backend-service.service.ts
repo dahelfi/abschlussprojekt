@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Conversation } from 'src/models/conversations.class';
 import { User } from 'src/models/user.class';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 
 @Injectable({
@@ -20,12 +21,15 @@ export class BackendServiceService{
   actualConversation!: Conversation;//hier wird das aktuell eingeloggte conversationobjekt gespeichert
   conversationPartnerByName:string[] = [];
   allSubscribedChannels:any[] = [];  
+  url:string = './assets/img/pexels-photo-1181290.jpg';
+  image!:any;
   
  
 
   constructor(
     public database:AngularFirestore,
     public route: ActivatedRoute,
+    public storage: AngularFireStorage
     ) { }
  
   public setTheLoggedInUser(user: User){
@@ -183,6 +187,10 @@ export class BackendServiceService{
       .then((result)=>{
         console.log("update finished");
       });
+    }
+
+    public uploadFilesToStorage(filePath:string, file:any){
+      this.storage.upload(filePath, file);
     }
 
 

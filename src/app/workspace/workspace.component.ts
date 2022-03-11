@@ -44,8 +44,17 @@ export class WorkspaceComponent implements OnInit {
   }
 
 
-  onFileSelected(event:any){
-    console.log(event);
+  onFileSelected(e:any){
+    if(e.target.files){
+      this.backend.image = e.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(this.backend.image);
+      reader.onload = (event: any)=>{
+        this.backend.url = event.target.result;
+      }
+
+     
+    }
 
     const dialogRef = this.dialog.open(DialogSentImageComponent);
   }
