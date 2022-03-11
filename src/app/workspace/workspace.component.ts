@@ -66,6 +66,7 @@ export class WorkspaceComponent implements OnInit {
       this.messageJson.creatorId = this.backend.loggedInUser.userId;
       this.messageJson.creatorUserName = this.backend.loggedInUser.userName;
       this.messageObject = new Message(this.messageJson);
+      this.messageObject.threadMessages = [];
       this.backend.actualConversation.messages.push(this.messageObject.toJson());
       this.messageJson.messageContent = '';
       console.log("message sending wird ausgeführt");

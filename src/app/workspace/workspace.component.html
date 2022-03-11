@@ -7,6 +7,14 @@
                 <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
                 <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
                 <mat-card-content>{{ content.messageContent }}</mat-card-content>
+
+                <div class="tools ms-auto">
+                    <button mat-icon-button >
+                        <mat-icon>comment</mat-icon>
+                    </button>
+                    <h5>Open in Thread</h5>
+                </div>
+                
             </mat-card>
         </div>
     </div>
@@ -42,3 +50,4 @@
    
 
 </div>
+<app-thread></app-thread>
