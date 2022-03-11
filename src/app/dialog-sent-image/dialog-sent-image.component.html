@@ -1,0 +1,9 @@
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <img style="border-radius: 5px; max-height: 500px; max-width: 800px; object-fit: cover;" [src]="backend.url" >
+    <div style="margin-top: 16px;">
+        <button mat-button  (click)="dialogRef.close()" mat-dialog-close>Cancel</button>
+        <button mat-button  (click)="sendFiles()" cdkFocusInitial>Send</button>
+    </div>
+    
+   
+</div>

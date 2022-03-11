@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendServiceService } from '../backend-service.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
 
   snav: any;
-  constructor() { }
+  constructor(public backend:BackendServiceService) { }
 
   ngOnInit(): void {
   }

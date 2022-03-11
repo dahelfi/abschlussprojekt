@@ -1,9 +1,12 @@
 #workspace {
     position: inherit;
     height: calc(100vh - 64px);
+
+    // positions Message-InputField at bottom BUT has no effect on width/autoresize of InputField like positon-fixed.
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    // positions Message-InputField at bottom BUT has no effect on width/autoresize of InputField like positon-fixed.
 }
 
 

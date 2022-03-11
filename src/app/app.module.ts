@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -36,8 +37,11 @@ import { ThreadComponent } from './thread/thread.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { DialogAddConversationComponent } from './dialog-add-conversation/dialog-add-conversation.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { DialogAddMessageComponent } from './dialog-add-message/dialog-add-message.component';
+import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+import { DialogSentImageComponent } from './dialog-sent-image/dialog-sent-image.component';
+
 
 
 @NgModule({
@@ -50,7 +54,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     ToolbarComponent,
     WorkspaceComponent,
     ThreadComponent,
-    DialogAddConversationComponent,
+    DialogAddMessageComponent,
+    DialogAddChannelComponent,
+    DialogSentImageComponent,
  
   ],
   imports: [
@@ -76,10 +82,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
