@@ -6,6 +6,7 @@ import { Conversation } from 'src/models/conversations.class';
 import { Message } from 'src/models/message.class';
 import { BackendServiceService } from '../backend-service.service';
 import { DialogSentImageComponent } from '../dialog-sent-image/dialog-sent-image.component';
+import { ThreadComponent } from '../thread/thread.component';
 
 @Component({
   selector: 'app-workspace',
@@ -52,6 +53,13 @@ export class WorkspaceComponent implements OnInit {
     }
 
     const dialogRef = this.dialog.open(DialogSentImageComponent);
+  }
+
+
+
+  public openMessageInThread(){
+    this.backend.openThread = true;
+
   }
 
 

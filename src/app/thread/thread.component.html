@@ -1,8 +1,8 @@
-<div id="thread" *ngIf="threadOpen">
+<div id="thread" *ngIf="backend.openThread">
     <mat-toolbar>
         <span>thread</span>
 
-        <button mat-icon-button (click)="threadOpen = false;">
+        <button mat-icon-button (click)="backend.openThread = false;">
             <mat-icon>close</mat-icon>
         </button>
     </mat-toolbar>
@@ -11,6 +11,10 @@
     <div class="main">
         <div style="overflow-y: scroll; height: 100%;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <div class="messagesContainer">
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
                 <mat-card class="m-3">thread works!</mat-card>
                 <mat-card class="m-3">thread works!</mat-card>
                 <mat-card class="m-3">thread works!</mat-card>

@@ -23,6 +23,8 @@ export class BackendServiceService{
   allSubscribedChannels:any[] = [];  
   url:string = './assets/img/pexels-photo-1181290.jpg';
   image!:any;
+  openThread?: boolean;
+  
   
  
 
