@@ -24,7 +24,7 @@
                 </div>
             
                 <div class="messagesContainer" *ngFor="let content of backend.actualThreadMessage.threadMessages">
-                    <mat-card class="m-3">
+                    <mat-card style="background-color: #e3dc94;" class="m-3" *ngIf="backend.loggedInUser.userId == content.creatorId">
                         <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
                         <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
                         <mat-card-content>{{ content.messageContent }}</mat-card-content>
@@ -32,6 +32,15 @@
                         
     
                 </mat-card>
+
+                <mat-card class="m-3" *ngIf="backend.loggedInUser.userId != content.creatorId">
+                    <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
+                    <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
+                    <mat-card-content>{{ content.messageContent }}</mat-card-content>
+
+                    
+
+            </mat-card>
                
            
             </div>
