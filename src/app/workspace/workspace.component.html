@@ -1,44 +1,57 @@
 <div id="workspace">
+    <mat-toolbar>
+        <span>workspace</span>
+    </mat-toolbar>
 
-    <div style="overflow-y: scroll;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-        <!-- now we have an Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for 'scrollTop': '892'. Current value: '1020'.. Find more at https://angular.io/errors/NG0100 -->
-        <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages">
-            <mat-card class="m-3">
-                <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
-                <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                <mat-card-content>{{ content.messageContent }}</mat-card-content>
-            </mat-card>
+    <div class="main">
+        <div style="overflow-y: scroll; height: 100%;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <!-- now we have an Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for 'scrollTop': '892'. Current value: '1020'.. Find more at https://angular.io/errors/NG0100 -->
+            <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages">
+                <mat-card class="m-3">
+                    <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
+                    <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
+                    <mat-card-content>{{ content.messageContent }}</mat-card-content>
+
+                    <div class="tools ms-auto">
+                        <button mat-icon-button (click)="threadOpen = false;">
+                            <mat-icon>comment</mat-icon>
+                        </button>
+                        <h5>Open in Thread</h5>
+                    </div>
+
+                </mat-card>
+            </div>
+        </div>
+
+
+        <div style="display: flex; margin: 1rem;">
+
+
+            <button (click)="file.click()" mat-icon-button>
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" #file
+                    style="position: fixed; top: -100em;">
+                <mat-icon>photo_camera</mat-icon>
+            </button>
+
+            <form #messageInput="ngForm" (ngSubmit)="manageMessageSending(); messageInput.resetForm()"
+                class="hstack gap-2" style="width: 100%;">
+
+
+
+                <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
+                    cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                    autofocus>
+            </textarea>
+
+
+                <button type="submit" mat-icon-button>
+                    <mat-icon>send</mat-icon>
+                </button>
+
+            </form>
+
         </div>
     </div>
 
-
-    <div style="display: flex;">
-
-
-        <button (click)="file.click()" mat-icon-button>
-            <input type="file" (change)="onFileSelected($event)" accept="image/*" #file style="position: fixed; top: -100em;">
-            <mat-icon>photo_camera</mat-icon>
-        </button>
-        <form #messageInput="ngForm" (ngSubmit)="manageMessageSending(); messageInput.resetForm()"
-            class="hstack gap-2 messageInputField" style="width: 100%;">
-    
-            
-          
-    
-            <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
-                cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" autofocus>
-            </textarea>
-    
-            
-            <button type="submit" mat-icon-button>
-                <mat-icon>send</mat-icon>
-            </button>
-    
-        </form>
-    
-    </div>
-
-
-   
 
 </div>

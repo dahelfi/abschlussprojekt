@@ -1,21 +1,10 @@
-// let thread unvisible to focus on buidling sidebar and workspace. After they are finished, delete this.
-#thread{
-    display: none; 
-}
-// let thread unvisible to focus on buidling sidebar and workspace. After they are finished, delete this.
+#thread {
+    .main {
+        position: inherit;
+        height: calc(100vh - 64px - 64px);
 
-
-#thread{
-    min-width: 10rem; //Just for test, after design of CkEditor finished, delete this.
-    width: 40rem;
-}
-
-
-.ckeditor{
-    position: fixed;
-    bottom: 10rem;
-    z-index: 1;
-}
-:host ::ng-deep .ck-editor__editable_inline {
-    min-height: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 }

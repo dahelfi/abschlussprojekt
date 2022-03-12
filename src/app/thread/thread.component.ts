@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -19,6 +19,7 @@ export class ThreadComponent implements OnInit {
     return this.editorComponent.editorInstance;
   }
 
+  @Input() threadOpen?: boolean;
   
   constructor() { }
 

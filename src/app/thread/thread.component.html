@@ -1,5 +1,49 @@
-<div id="thread">
-    <p class="p-3">thread works!</p>
+<div id="thread" *ngIf="threadOpen">
+    <mat-toolbar>
+        <span>thread</span>
 
-    <ckeditor class="ckeditor" #editor [editor]="Editor" data=""></ckeditor>
+        <button mat-icon-button (click)="threadOpen = false;">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+
+
+    <div class="main">
+        <div style="overflow-y: scroll; height: 100%;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <div class="messagesContainer">
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+                <mat-card class="m-3">thread works!</mat-card>
+            </div>
+
+            <div style="display: flex; margin: 1rem;">
+
+                <button (click)="file.click()" mat-icon-button>
+                    <input type="file" accept="image/*" #file style="position: fixed; top: -100em;">
+                    <mat-icon>photo_camera</mat-icon>
+                </button>
+
+                <form #messageInput="ngForm" (ngSubmit)="messageInput.resetForm()" class="hstack gap-2"
+                    style="width: 100%;">
+
+                    <textarea class="form-control me-auto" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" autofocus>
+            </textarea>
+
+                    <button type="submit" mat-icon-button>
+                        <mat-icon>send</mat-icon>
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
 </div>

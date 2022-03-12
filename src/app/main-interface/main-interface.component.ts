@@ -32,6 +32,8 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
 
   innerWidth = window.innerWidth;
   
+  threadOpen = true;
+
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     public backend: BackendServiceService, public route: ActivatedRoute) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');

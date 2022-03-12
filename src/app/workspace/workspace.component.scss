@@ -1,15 +1,26 @@
 #workspace {
-    position: inherit;
-    height: calc(100vh - 64px);
+    .main {
+        position: inherit;
+        height: calc(100vh - 64px - 64px);
 
-    // positions Message-InputField at bottom BUT has no effect on width/autoresize of InputField like positon-fixed.
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    // positions Message-InputField at bottom BUT has no effect on width/autoresize of InputField like positon-fixed.
+        // positions Message-InputField at bottom BUT has no effect on width/autoresize of InputField like positon-fixed.
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        // positions Message-InputField at bottom BUT has no effect on width/autoresize of InputField like positon-fixed.
+    }
 }
 
+.messagesContainer {
+    position: relative;
+    .tools {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        visibility: hidden;
+    }
 
-:host ::ng-deep .ck-editor__editable_inline {
-    min-height: 1rem;
+    &:hover .tools {
+        visibility: visible;
+    }
 }

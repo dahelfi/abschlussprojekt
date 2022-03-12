@@ -190,6 +190,7 @@ export class BackendServiceService{
     }
 
     public uploadFilesToStorage(filePath:string, file:any){
+      console.log("hier ist das betreffende File: ", filePath);
       this.storage.upload(filePath, file);
     }
 
