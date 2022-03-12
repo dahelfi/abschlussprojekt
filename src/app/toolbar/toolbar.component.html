@@ -3,13 +3,16 @@
         <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>space_dashboard</mat-icon>
         </button>
-        
+
         <h1 class="logo">SLACK FAKE</h1>
 
     </div>
-    
 
-    <div>
-        <h1>{{ this.backend.loggedInUser.userName }}</h1>
-    </div>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <h1>{{ backend.loggedInUser.userName }}</h1>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="backend.logout()">Log out</button>
+    </mat-menu>
 </mat-toolbar>
