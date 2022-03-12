@@ -1,40 +1,45 @@
-<mat-nav-list id="sidebar">
-        <div id="Direct messages" class="card">
+<div id="sidebar">
 
-            <div class="card-body">
-                <div class="card-title hstack gap-2 showTools">
-                    <h3>
-                        Channels
-                    </h3>
-                    <div class="tools ms-auto">
-                        <button mat-icon-button (click)="openDialogChannel()">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="card-text" *ngFor="let channel of backend.allSubscribedChannels">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start" (click)="addChannelConversationInURL(channel)">{{ channel['channelName'] }}</li>
-                    </ul>
-                </div>
-                <div class="card-title hstack gap-2 showTools">
-                    <h3>
-                        Direct messages
-                    </h3>
-                    <div class="tools ms-auto">
-                        <button mat-icon-button (click)="openDialogMessage()">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="card-text" *ngFor="let userName of backend.conversationPartnerByName">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item highlight btn text-start" (click)="addConversationIDInURL(userName)">{{userName}}</li>
-                    </ul>
-                </div>
+    <div class="card-body">
+        <div class="card-title hstack gap-2 showTools">
+            <h6 class="mt-auto mb-auto">
+                Channels
+            </h6>
+            <div class="tools ms-auto">
+                <button mat-icon-button (click)="openDialogChannel()">
+                    <mat-icon>add</mat-icon>
+                </button>
             </div>
-
         </div>
-</mat-nav-list>
+
+        <div class="card-text" *ngFor="let channel of backend.allSubscribedChannels">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item highlight btn text-start" (click)="addChannelConversationInURL(channel)">
+                    {{ channel['channelName'] }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="card-body">
+        <div class="card-title hstack gap-2 showTools">
+            <h6 class="mt-auto mb-auto">
+                Direct messages
+            </h6>
+            <div class="tools ms-auto">
+                <button mat-icon-button (click)="openDialogMessage()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        
+        <div class="card-text" *ngFor="let userName of backend.conversationPartnerByName">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item highlight btn text-start" (click)="addConversationIDInURL(userName)">
+                    {{userName}}</li>
+            </ul>
+        </div>
+    </div>
+
+</div>

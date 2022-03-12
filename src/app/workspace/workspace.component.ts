@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -32,17 +32,12 @@ export class WorkspaceComponent implements OnInit {
     placeholder: 'Type the content here!'
   }
 
-  fillerContent = Array.from(
-    { length: 8 },
-    () =>
-      `Lorem`,
-  );
+  @Input() threadOpen?: boolean;
 
   constructor(public backend: BackendServiceService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
-
 
   onFileSelected(e:any){
     if(e.target.files){
