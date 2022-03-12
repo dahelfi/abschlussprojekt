@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Conversation } from 'src/models/conversations.class';
 import { User } from 'src/models/user.class';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -36,7 +37,8 @@ export class BackendServiceService{
   constructor(
     public database:AngularFirestore,
     public route: ActivatedRoute,
-    public storage: AngularFireStorage
+    public storage: AngularFireStorage,
+    public router: Router,
     ) { }
  
   public setTheLoggedInUser(user: User){
@@ -278,6 +280,12 @@ export class BackendServiceService{
       console.log("hier ist das betreffende File: ", filePath);
       this.storage.upload(filePath, file);
     }
+
+  public logout(){
+    this.uid = '';
+    this.loggedInUser = new User();
+    this.router.navigate(['login'])
+  }
 
 
 
