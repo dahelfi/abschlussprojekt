@@ -30,6 +30,7 @@ export class BackendServiceService{
   actualThread!:Conversation;
   actualThreadMessage!: Message;
   actualThreadDescription!: any; 
+  allowUpdateThreadDescription:boolean = false;
   
   
  
@@ -148,8 +149,9 @@ export class BackendServiceService{
 
 
   public calculateActualThreadDescription(){
-    console.log("thread description wird ausgefürt: ");
-  
+   
+  if(this.allowUpdateThreadDescription){
+
     if(this.actualThread && this.actualThread.channelName != ''){
       this.actualThreadDescription = "#"+this.actualConversation.channelName;
     }else if(this.actualThread){
@@ -161,6 +163,9 @@ export class BackendServiceService{
     }else{
       this.actualThreadDescription = '';
     }
+
+  }
+ 
   }
 
   public calculateActualConversationPartner(element:any){
