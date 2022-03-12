@@ -24,6 +24,7 @@ export class BackendServiceService{
   url:string = './assets/img/pexels-photo-1181290.jpg';
   image!:any;
   openThread?: boolean;
+  actualConversationDescription!:any;
   
   
  
@@ -115,6 +116,36 @@ export class BackendServiceService{
     }
   }
 
+
+  public calculateActualConversationDescription(){
+  
+    if(this.actualConversation && this.actualConversation.channelName != ''){
+      this.actualConversationDescription = this.actualConversation.channelName;
+    }else if(this.actualConversation){
+
+      //console.log("hier der errechnete ConversationsPartner: ",this.calculateActualConversationPartner);
+      
+      this.actualConversationDescription = this.findUserById(this.calculateActualConversationPartner()).userName;
+      //console.log("hier die ConversationDescription: ",this.actualConversationDescription);
+    }else{
+      this.actualConversationDescription = '';
+    }
+  }
+
+  public calculateActualConversationPartner(){
+    let userIdTemp!:number;
+    if(this.actualConversation.channelName == ''){
+      for (let i = 0; i < this.actualConversation.participators.length; i++) {
+       if(this.actualConversation.participators[i] != this.loggedInUser.userId){
+          userIdTemp = (this.actualConversation.participators[i]);
+       }
+        
+      }
+    }
+
+    
+    return userIdTemp;
+  }
 
 
   public showAllSubsribedChannels(){
