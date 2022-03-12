@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Conversation } from 'src/models/conversations.class';
 import { User } from 'src/models/user.class';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Message } from 'src/models/message.class';
 
 
 @Injectable({
@@ -25,6 +26,9 @@ export class BackendServiceService{
   image!:any;
   openThread?: boolean;
   actualConversationDescription!:any;
+  actualThread!:Conversation;
+  actualThreadMessage!: Message;
+  actualThreadDescription!: any; 
   
   
  
@@ -56,6 +60,14 @@ export class BackendServiceService{
 
   public setTheActualConversation(conversation: Conversation){
     this.actualConversation = conversation;
+  }
+
+  public setTheActualThread(thread: Conversation){
+    this.actualThread = thread;
+  }
+
+  public setTheActualThreadMessage(threadMessage: Message){
+    this.actualThreadMessage = threadMessage;
   }
 
 
@@ -125,26 +137,56 @@ export class BackendServiceService{
 
       //console.log("hier der errechnete ConversationsPartner: ",this.calculateActualConversationPartner);
       
-      this.actualConversationDescription = this.findUserById(this.calculateActualConversationPartner()).userName;
+      this.actualConversationDescription = this.findUserById(this.calculateActualConversationPartner(this.actualConversation)).userName;
       //console.log("hier die ConversationDescription: ",this.actualConversationDescription);
     }else{
       this.actualConversationDescription = '';
     }
   }
 
-  public calculateActualConversationPartner(){
+
+  public calculateActualThreadDescription(){
+    console.log("thread description wird ausgefürt: ");
+  
+    if(this.actualThread && this.actualThread.channelName != ''){
+      this.actualThreadDescription = "#"+this.actualConversation.channelName;
+    }else if(this.actualThread){
+
+      //console.log("hier der errechnete ConversationsPartner: ",this.calculateActualConversationPartner);
+      
+      this.actualThreadDescription = this.findUserById(this.calculateActualConversationPartner(this.actualThread)).userName;
+      //console.log("hier die ConversationDescription: ",this.actualConversationDescription);
+    }else{
+      this.actualThreadDescription = '';
+    }
+  }
+
+  public calculateActualConversationPartner(element:any){
     let userIdTemp!:number;
-    if(this.actualConversation.channelName == ''){
-      for (let i = 0; i < this.actualConversation.participators.length; i++) {
-       if(this.actualConversation.participators[i] != this.loggedInUser.userId){
-          userIdTemp = (this.actualConversation.participators[i]);
+   
+      for (let i = 0; i < element.participators.length; i++) {
+       if(element.participators[i] != this.loggedInUser.userId){
+          userIdTemp = (element.participators[i]);
        }
         
       }
-    }
+
 
     
     return userIdTemp;
+  }
+
+  public findMessageObjektByIdInArray(messageId: number, messageArray: any[]){
+    let messageElement!: any;
+    for (let i = 0; i < messageArray.length; i++) {
+      if(messageId == messageArray[i].messageId){
+        messageElement = messageArray[i];
+      }
+      
+    }
+
+    return messageElement;
+
   }
 
 
@@ -158,6 +200,16 @@ export class BackendServiceService{
       }  
       
       }
+    
+    }
+
+  }
+
+  public updateMessageElementInActualThreadElement(messageElement :any){
+    for (let i = 0; i < this.actualThread.messages.length; i++) {
+    if(messageElement.messageId == this.actualThread.messages[i].messageId){
+      this.actualThread.messages[i] = messageElement;
+    }  
     
     }
 

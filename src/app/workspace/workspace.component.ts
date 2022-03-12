@@ -6,7 +6,7 @@ import { Conversation } from 'src/models/conversations.class';
 import { Message } from 'src/models/message.class';
 import { BackendServiceService } from '../backend-service.service';
 import { DialogSentImageComponent } from '../dialog-sent-image/dialog-sent-image.component';
-import { ThreadComponent } from '../thread/thread.component';
+
 
 @Component({
   selector: 'app-workspace',
@@ -17,6 +17,7 @@ export class WorkspaceComponent implements OnInit {
 
   public Editor = ClassicEditor;
   messageJson = {
+    messageId: 0,
     creatorId: 0,
     messageContent: "",
     timestamp: '',
@@ -57,7 +58,12 @@ export class WorkspaceComponent implements OnInit {
 
 
 
-  public openMessageInThread(){
+  public openMessageInThread(messageElement:any){
+    
+    
+    this.backend.setTheActualThread(new Conversation(this.backend.actualConversation));
+    this.backend.setTheActualThreadMessage(new Message(this.backend.findMessageObjektByIdInArray(messageElement.messageId, this.backend.actualThread.messages)));
+    this.backend.calculateActualThreadDescription();
     this.backend.openThread = true;
 
   }
@@ -68,11 +74,12 @@ export class WorkspaceComponent implements OnInit {
       this.messageJson.timestamp = new Date().getTime().toString();
       this.messageJson.creatorId = this.backend.loggedInUser.userId;
       this.messageJson.creatorUserName = this.backend.loggedInUser.userName;
+      this.messageJson.messageId = this.backend.actualConversation.messages.length + 1;
       this.messageObject = new Message(this.messageJson);
       this.messageObject.threadMessages = [];
       this.backend.actualConversation.messages.push(this.messageObject.toJson());
       this.messageJson.messageContent = '';
-      console.log("message sending wird ausgeführt");
+    
       
       this.backend.updateElementInDatabase("conversations", this.backend.actualConversation.toJson(), this.backend.actualConversation.customIdName);
     }

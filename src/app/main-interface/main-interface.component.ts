@@ -47,13 +47,13 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
 
     this.route.params.subscribe((params: any) => {
 
-      console.log("das sind die paramter",params);
+    
    
         this.backend.database.collection('users').doc(params.id)
         .valueChanges({ idField: "customIdName" }).subscribe((currentUser: any)=>{
         
         this.backend.setTheLoggedInUser(new User(currentUser));
-        console.log("Hier der User: " ,this.backend.loggedInUser );
+    
         
        
       
@@ -72,7 +72,24 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
        this.backend.showAllSubsribedChannels();
        this.backend.calculateActualConversationDescription();
      
+
+                
+       this.backend.database.collection('conversations').doc(this.backend.actualThread.customIdName)
+       .valueChanges({ idField: "customIdName" }).subscribe((currentThread: any)=>{
+
+         this.backend.setTheActualThread(new Conversation(currentThread));
+         console.log("if teil wird ausgeführt");
+         
+         this.backend.calculateActualThreadDescription();
+       });
+
+           
+
+
+
       });
+  
+      
 
     
       

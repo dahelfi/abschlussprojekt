@@ -13,9 +13,16 @@
                     <mat-card-content>{{ content.messageContent }}</mat-card-content>
 
                     <div class="tools ms-auto">
-                        <button mat-icon-button (click)="openMessageInThread()">
-                            <mat-icon>comment</mat-icon>
-                        </button>
+                        <div style="display: flex;">
+                            <button mat-icon-button (click)="openMessageInThread(content)">
+                                <mat-icon>comment</mat-icon>
+                            </button>
+                            <div *ngIf = "content.threadMessages.length > 0">
+                                <p *ngIf="content.threadMessages.length == 1" style="color: red;">{{ content.threadMessages.length + " " }} Answer</p>
+                                <p *ngIf="content.threadMessages.length > 1" style="color: red;">{{ content.threadMessages.length + " " }} Answers</p>
+                            </div>
+                        </div>
+                       
                         <h5>Open in Thread</h5>
                     </div>
 
