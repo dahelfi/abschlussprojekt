@@ -8,6 +8,11 @@
             <!-- now we have an Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for 'scrollTop': '892'. Current value: '1020'.. Find more at https://angular.io/errors/NG0100 -->
             <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages">
                 <mat-card *ngIf="backend.loggedInUser.userId == content.creatorId" class="m-3" style="background-color: #e2bae6">
+                    <div *ngIf="content.imageUrl !=''">
+                        <img [src]="backend.getFileByUrl(content.imageUrl) | async">
+
+                    </div>
+
                     <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
                     <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
                     <mat-card-content>{{ content.messageContent }}</mat-card-content>
@@ -52,6 +57,14 @@
         </div>
 
 
+      
+
+        <div>
+            <img [src]="backend.testImage | async">
+            <button (click)="backend.getTestFile()">Test</button>
+        </div>
+     
+
         <div style="display: flex; margin: 1rem;">
 
 
@@ -69,7 +82,7 @@
                 <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
                     cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
                     autofocus>
-            </textarea>
+                </textarea>
 
 
                 <button type="submit" mat-icon-button>

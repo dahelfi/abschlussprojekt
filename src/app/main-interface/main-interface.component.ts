@@ -61,6 +61,8 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
        this.backend.sortAllChannelsAndConversations();
        this.backend.showAllSubsribedChannels();
        });
+
+       
      
        
 
@@ -78,7 +80,7 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
        .valueChanges({ idField: "customIdName" }).subscribe((currentThread: any)=>{
 
          this.backend.setTheActualThread(new Conversation(currentThread));
-         console.log("if teil wird ausgeführt");
+
          
          this.backend.calculateActualThreadDescription();
        });

@@ -20,6 +20,7 @@ export class ThreadComponent implements OnInit {
     messageContent: "",
     timestamp: '',
     creatorUserName: '',
+    imageUrl: ''
 
   };
   messageObject!: Message;

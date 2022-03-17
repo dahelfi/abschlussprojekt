@@ -31,6 +31,7 @@ export class BackendServiceService{
   actualThreadMessage!: Message;
   actualThreadDescription!: any; 
   allowUpdateThreadDescription:boolean = false;
+  testImage!:any;
   
   
  
@@ -282,8 +283,9 @@ export class BackendServiceService{
     }
 
     public uploadFilesToStorage(filePath:string, file:any){
-      console.log("hier ist das betreffende File: ", filePath);
+      
       this.storage.upload(filePath, file);
+      console.log("file erfolgreich hochgeladen");
     }
 
   public logout(){
@@ -292,6 +294,17 @@ export class BackendServiceService{
     this.router.navigate(['login'])
   }
 
+  public getFileByUrl(url:string){
+    console.log("die betreffende url war: ", url);
+    let testFile:any = this.storage.ref(url).getDownloadURL();
+    console.log("fertig geladen");
+    
+    return testFile; 
+  }
+
+  public getTestFile(){
+    this.testImage = this.storage.ref('imageRwtTGetiF51j3yblb9c301').getDownloadURL();
+  }
 
 
 

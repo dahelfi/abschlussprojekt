@@ -4,6 +4,7 @@ export class Message{
     creatorUserName!:string;
     messageContent!: string;
     timestamp!: number;
+    imageUrl!:string;
     threadMessages: any[];
 
     constructor(obj?:any){
@@ -12,7 +13,8 @@ export class Message{
         this.creatorUserName = obj? obj.creatorUserName : '';
         this.messageContent = obj? obj.messageContent : '';
         this.timestamp = obj? obj.timestamp : 0;
-        this.threadMessages = obj? obj.threadMessages : []; 
+        this.threadMessages = obj? obj.threadMessages : [];
+        this.imageUrl = obj? obj.imageUrl : ''; 
         
 
     }
@@ -25,6 +27,7 @@ export class Message{
            messageContent: this.messageContent,
            timestamp: this.timestamp,
            threadMessages: this.threadMessages, 
+           imageUrl: this.imageUrl,
        } 
     }
 

@@ -22,6 +22,7 @@ export class WorkspaceComponent implements OnInit {
     messageContent: "",
     timestamp: '',
     creatorUserName: '',
+    imageUrl: ''
 
   };
   messageObject!: Message;
