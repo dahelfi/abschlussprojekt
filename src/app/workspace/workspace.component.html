@@ -7,15 +7,19 @@
         <div style="overflow-y: scroll; height: 100%;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <!-- now we have an Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for 'scrollTop': '892'. Current value: '1020'.. Find more at https://angular.io/errors/NG0100 -->
             <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages">
-                <mat-card *ngIf="backend.loggedInUser.userId == content.creatorId" class="m-3" style="background-color: #e2bae6">
-                    <div *ngIf="content.imageUrl !=''">
-                        <img [src]="backend.getFileByUrl(content.imageUrl) | async">
+                <mat-card *ngIf="backend.loggedInUser.userId == content.creatorId" class="m-3 positioning" style="background-color: #e2bae6">
+                   
 
-                    </div>
-
+                    <div style="margin-right: 150px;">
                     <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
                     <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
                     <mat-card-content>{{ content.messageContent }}</mat-card-content>
+                    </div>
+
+                    <div *ngIf="content.imageUrl !=''">
+                        <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl) | async">
+
+                    </div>
 
                     <div class="tools ms-auto">
                         <div style="display: flex;">
@@ -59,10 +63,7 @@
 
       
 
-        <div>
-            <img [src]="backend.testImage | async">
-            <button (click)="backend.getTestFile()">Test</button>
-        </div>
+   
      
 
         <div style="display: flex; margin: 1rem;">

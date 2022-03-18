@@ -32,6 +32,7 @@ export class BackendServiceService{
   actualThreadDescription!: any; 
   allowUpdateThreadDescription:boolean = false;
   testImage!:any;
+  imageArray: any[] = [];
   
   
  
@@ -284,8 +285,24 @@ export class BackendServiceService{
 
     public uploadFilesToStorage(filePath:string, file:any){
       
-      this.storage.upload(filePath, file);
-      console.log("file erfolgreich hochgeladen");
+      this.storage.upload(filePath, file).then(async()=>{
+         let image =  this.storage.ref(filePath).getDownloadURL();
+        
+        // .subscribe(element=>{
+        //   console.log("das element bekommst du: ", element);
+          let imageElement = {
+             url: filePath,
+           image: image
+          }
+          //console.log("hier dein Image: ",image);
+          
+           this.imageArray.push(imageElement);
+
+       // })
+      })
+      
+      //console.log("hier dein Bildarray: ", this.imageArray);
+      
     }
 
   public logout(){
@@ -294,13 +311,31 @@ export class BackendServiceService{
     this.router.navigate(['login'])
   }
 
-  public getFileByUrl(url:string){
-    console.log("die betreffende url war: ", url);
-    let testFile:any = this.storage.ref(url).getDownloadURL();
-    console.log("fertig geladen");
-    
-    return testFile; 
+  public getImageById(key: string){
+    let imageElement!:any;
+    for (let i = 0; i < this.imageArray.length; i++) {
+      if(this.imageArray[i].url == key){
+        imageElement = this.imageArray[i].image;
+      }
+      
+    }
+
+    return imageElement;
   }
+
+  // public getFileByUrl(url:string){
+  //   console.log("die betreffende url war: ", url);
+  //   let testFile:any;
+  //   setTimeout(()=>{
+
+  //     testFile = this.storage.ref(url).getDownloadURL();
+  //     console.log("fertig geladen");
+
+  //   }, 2000);
+    
+    
+  //   return testFile; 
+  // }
 
   public getTestFile(){
     this.testImage = this.storage.ref('imageRwtTGetiF51j3yblb9c301').getDownloadURL();
