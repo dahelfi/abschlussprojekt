@@ -73,6 +73,7 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
        this.backend.sortAllChannelsAndConversations();
        this.backend.showAllSubsribedChannels();
        this.backend.calculateActualConversationDescription();
+       this.backend.getAllImages();
      
 
                 

@@ -37,24 +37,31 @@
 
                 </mat-card>
 
-                <mat-card *ngIf="backend.loggedInUser.userId != content.creatorId" class="m-3">
-                    <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
-                    <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                    <mat-card-content>{{ content.messageContent }}</mat-card-content>
-
-                    <div class="tools ms-auto">
-                        <div style="display: flex;">
-                            <button mat-icon-button (click)="openMessageInThread(content)">
-                                <mat-icon>comment</mat-icon>
-                            </button>
-                            <div *ngIf = "content.threadMessages.length > 0">
-                                <p *ngIf="content.threadMessages.length == 1" style="color: red;">{{ content.threadMessages.length + " " }} Answer</p>
-                                <p *ngIf="content.threadMessages.length > 1" style="color: red;">{{ content.threadMessages.length + " " }} Answers</p>
-                            </div>
+                <mat-card *ngIf="backend.loggedInUser.userId != content.creatorId" class="m-3 positioning">
+                    <div style="margin-right: 150px;">
+                        <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
+                        <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
+                        <mat-card-content>{{ content.messageContent }}</mat-card-content>
                         </div>
-                       
-                        <h5>Open in Thread</h5>
-                    </div>
+    
+                        <div *ngIf="content.imageUrl !=''">
+                            <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl) | async">
+    
+                        </div>
+    
+                        <div class="tools ms-auto">
+                            <div style="display: flex;">
+                                <button mat-icon-button (click)="openMessageInThread(content)">
+                                    <mat-icon>comment</mat-icon>
+                                </button>
+                                <div *ngIf = "content.threadMessages.length > 0">
+                                    <p *ngIf="content.threadMessages.length == 1" style="color: red;">{{ content.threadMessages.length + " " }} Answer</p>
+                                    <p *ngIf="content.threadMessages.length > 1" style="color: red;">{{ content.threadMessages.length + " " }} Answers</p>
+                                </div>
+                            </div>
+                           
+                            <h5>Open in Thread</h5>
+                        </div>
 
                 </mat-card>
             </div>

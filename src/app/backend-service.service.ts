@@ -298,6 +298,7 @@ export class BackendServiceService{
           
            this.imageArray.push(imageElement);
 
+           console.log("hier ist dein imagearray mit upload: ",this.imageArray);
        // })
       })
       
@@ -323,23 +324,43 @@ export class BackendServiceService{
     return imageElement;
   }
 
-  // public getFileByUrl(url:string){
-  //   console.log("die betreffende url war: ", url);
-  //   let testFile:any;
-  //   setTimeout(()=>{
+   public async getFileByUrl(downloadUrl:string){
+ 
+   this.imageArray = [];
 
-  //     testFile = this.storage.ref(url).getDownloadURL();
-  //     console.log("fertig geladen");
+    let image = await this.storage.ref(downloadUrl).getDownloadURL();
 
-  //   }, 2000);
+
+
+    let imageElement = {
+      url: downloadUrl,
+    image: image
+   }
+
+    this.imageArray.push(imageElement);
+    console.log("getFileByUrl wird auch ausgeführt");
+    
+  
     
     
-  //   return testFile; 
-  // }
+    
 
-  public getTestFile(){
-    this.testImage = this.storage.ref('imageRwtTGetiF51j3yblb9c301').getDownloadURL();
-  }
+   }
+
+   public getAllImages(){
+
+    console.log("getAllImages wird ausgeführt ich werde ausgeführt");
+    
+    for (let i = 0; i < this.actualConversation.messages.length; i++) {
+      if(this.actualConversation.messages[i].imageUrl !== ''){
+        this.getFileByUrl(this.actualConversation.messages[i].imageUrl);
+      }
+      
+    }
+
+   }
+
+
 
 
 
