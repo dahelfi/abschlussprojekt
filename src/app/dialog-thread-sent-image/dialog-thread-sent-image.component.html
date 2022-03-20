@@ -1,0 +1,37 @@
+<div style="display: flex; flex-direction: column; align-items: center; max-height: 80vh;">
+    <div style="margin-bottom: 10px; display: flex; justify-content: flex-end; width: 100%;">
+        <button  mat-icon-button (click)="dialogRef.close()">
+            <mat-icon>close</mat-icon>
+        </button>
+
+    </div>
+    
+    <div>
+        
+            
+            
+    
+         
+       
+
+        <img style="margin-bottom: 30px; margin-top: 20px; border-radius: 5px; max-height: 500px; max-width: 800px; object-fit: cover;" [src]="backend.url" >
+        <form #messageInput="ngForm" (ngSubmit)="manageMessageSending(); messageInput.resetForm()"
+        class="hstack gap-2" style="width: 100%;">
+
+
+
+        <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+            autofocus>
+        </textarea>
+
+
+        <button type="submit" mat-icon-button>
+            <mat-icon>send</mat-icon>
+        </button>
+
+    </form>
+    </div>
+    
+   
+</div>

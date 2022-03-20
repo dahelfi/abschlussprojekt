@@ -12,10 +12,22 @@
         <div style="overflow-y: scroll; height: 100%;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
 
                 <div>
-                    <mat-card class="m-3" style="background-color: #83dfe6;">
-                        <mat-card-title>{{ backend.actualThreadMessage.creatorUserName }}</mat-card-title>
-                        <mat-card-subtitle>{{ backend.actualThreadMessage.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                        <mat-card-content>{{ backend.actualThreadMessage.messageContent }}</mat-card-content>
+                    <mat-card class="m-3" style="background-color: #83dfe6; display: flex; justify-content: space-between;">
+
+                        <div>
+
+                            <mat-card-title>{{ backend.actualThreadMessage.creatorUserName }}</mat-card-title>
+                            <mat-card-subtitle>{{ backend.actualThreadMessage.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
+                            <mat-card-content>{{ backend.actualThreadMessage.messageContent }}</mat-card-content>
+
+                        </div>
+                    
+
+                        <div *ngIf="backend.actualThreadMessage.imageUrl !=''">
+                            <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(backend.actualThreadMessage.imageUrl, 'message') | async">
+    
+                        </div>
+    
     
                         
     
@@ -24,23 +36,40 @@
                 </div>
             
                 <div class="messagesContainer" *ngFor="let content of backend.actualThreadMessage.threadMessages">
-                    <mat-card style="background-color: #e3dc94;" class="m-3" *ngIf="backend.loggedInUser.userId == content.creatorId">
-                        <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
-                        <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                        <mat-card-content>{{ content.messageContent }}</mat-card-content>
+                    <mat-card style="background-color: #e3dc94; display: flex; justify-content: space-between;" class="m-3" *ngIf="backend.loggedInUser.userId == content.creatorId">
+                        <div>
+                            <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
+                            <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
+                            <mat-card-content>{{ content.messageContent }}</mat-card-content>
+
+                        </div>
+                        
     
+                        <div *ngIf="content.imageUrl !=''">
+                            <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl, 'thread') | async">
+    
+                        </div>
                         
     
                 </mat-card>
 
-                <mat-card class="m-3" *ngIf="backend.loggedInUser.userId != content.creatorId">
-                    <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
-                    <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                    <mat-card-content>{{ content.messageContent }}</mat-card-content>
+                <mat-card class="m-3" style="display: flex; justify-content: space-between;" *ngIf="backend.loggedInUser.userId != content.creatorId">
+                    <div>
+                        <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
+                        <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
+                        <mat-card-content>{{ content.messageContent }}</mat-card-content>
+                        
+                    </div>
+                    
+
+                    <div *ngIf="content.imageUrl !=''">
+                        <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl, 'thread') | async">
+
+                    </div>
 
                     
 
-            </mat-card>
+                </mat-card>
                
            
             </div>
@@ -48,7 +77,7 @@
             <div style="display: flex; margin: 1rem;">
 
                 <button (click)="file.click()" mat-icon-button>
-                    <input type="file" accept="image/*" #file
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*" #file
                         style="position: fixed; top: -100em;">
                     <mat-icon>photo_camera</mat-icon>
                 </button>

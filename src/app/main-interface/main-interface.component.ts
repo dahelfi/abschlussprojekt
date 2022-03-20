@@ -73,7 +73,9 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
        this.backend.sortAllChannelsAndConversations();
        this.backend.showAllSubsribedChannels();
        this.backend.calculateActualConversationDescription();
-       this.backend.getAllImages();
+       this.backend.getAllImagesMessages();
+       
+    
      
 
                 
@@ -84,6 +86,7 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
 
          
          this.backend.calculateActualThreadDescription();
+         this.backend.getAllImagesThread();
        });
 
            

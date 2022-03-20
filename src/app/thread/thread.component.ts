@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Message } from 'src/models/message.class';
 import { BackendServiceService } from '../backend-service.service';
+import { DialogThreadSentImageComponent } from '../dialog-thread-sent-image/dialog-thread-sent-image.component';
 
 
 @Component({
@@ -35,8 +37,25 @@ export class ThreadComponent implements OnInit {
   }
 
 
+  constructor(public backend:BackendServiceService, public dialog: MatDialog) { }
+
+  onFileSelected(e:any){
+    if(e.target.files){
+      this.backend.image = e.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(this.backend.image);
+      reader.onload = (event: any)=>{
+        this.backend.url = event.target.result;
+      }
+
+     
+    }
+
+    const dialogRef = this.dialog.open(DialogThreadSentImageComponent);
+  }
+
   
-  constructor(public backend:BackendServiceService) { }
+  
 
   stopThreadWork(){
     this.backend.openThread = false;
@@ -67,5 +86,6 @@ export class ThreadComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
 }

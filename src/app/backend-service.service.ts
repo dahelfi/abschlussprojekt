@@ -6,6 +6,7 @@ import { Conversation } from 'src/models/conversations.class';
 import { User } from 'src/models/user.class';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Message } from 'src/models/message.class';
+import { retry } from 'rxjs';
 
 
 @Injectable({
@@ -32,7 +33,8 @@ export class BackendServiceService{
   actualThreadDescription!: any; 
   allowUpdateThreadDescription:boolean = false;
   testImage!:any;
-  imageArray: any[] = [];
+  imageArrayMessage: any[] = [];
+  imageArrayThread: any[] = [];
   
   
  
@@ -283,27 +285,26 @@ export class BackendServiceService{
       });
     }
 
-    public uploadFilesToStorage(filePath:string, file:any){
+    public uploadFilesToStorage(filePath:string, file:any, category: string){
       
       this.storage.upload(filePath, file).then(async()=>{
          let image =  this.storage.ref(filePath).getDownloadURL();
         
-        // .subscribe(element=>{
-        //   console.log("das element bekommst du: ", element);
           let imageElement = {
              url: filePath,
            image: image
           }
-          //console.log("hier dein Image: ",image);
+  
           
-           this.imageArray.push(imageElement);
+          if(category == "thread"){
+            this.imageArrayThread.push(imageElement);
+          }else if(category == "message"){
+            this.imageArrayMessage.push(imageElement);
 
-           console.log("hier ist dein imagearray mit upload: ",this.imageArray);
-       // })
+          }
+             
       })
-      
-      //console.log("hier dein Bildarray: ", this.imageArray);
-      
+  
     }
 
   public logout(){
@@ -312,52 +313,78 @@ export class BackendServiceService{
     this.router.navigate(['login'])
   }
 
-  public getImageById(key: string){
-    let imageElement!:any;
-    for (let i = 0; i < this.imageArray.length; i++) {
-      if(this.imageArray[i].url == key){
-        imageElement = this.imageArray[i].image;
-      }
-      
-    }
 
-    return imageElement;
-  }
 
-   public async getFileByUrl(downloadUrl:string){
+   public async getFileByUrl(downloadUrl:string, category: string){
  
-   this.imageArray = [];
+
 
     let image = await this.storage.ref(downloadUrl).getDownloadURL();
 
 
 
-    let imageElement = {
-      url: downloadUrl,
-    image: image
-   }
+          let imageElement = {
+            url: downloadUrl,
+          image: image
+        }
 
-    this.imageArray.push(imageElement);
-    console.log("getFileByUrl wird auch ausgeführt");
-    
-  
-    
-    
-    
+            if(category == "message"){
+              this.imageArrayMessage.push(imageElement);
+            }else if(category == "thread"){
+              this.imageArrayThread.push(imageElement);
+            }
 
    }
 
-   public getAllImages(){
+   public getImageById(url:string, category:string){
+     let file:any;
 
-    console.log("getAllImages wird ausgeführt ich werde ausgeführt");
+     if(category == "thread"){
+        for (let i = 0; i < this.imageArrayThread.length; i++) {
+          if(url == this.imageArrayThread[i].url){
+            file = this.imageArrayThread[i].image;
+
+          } 
+        }
+     }else{
+      for (let i = 0; i < this.imageArrayMessage.length; i++) {
+        if(url == this.imageArrayMessage[i].url){
+          file = this.imageArrayMessage[i].image;
+
+        } 
+      }
+     }
+     
+     return file;
+  }
+
+   public getAllImagesMessages(){
+
+    this.imageArrayMessage = [];
+
+    console.log("getAllImagesMessages wird ausgeführt");
     
     for (let i = 0; i < this.actualConversation.messages.length; i++) {
       if(this.actualConversation.messages[i].imageUrl !== ''){
-        this.getFileByUrl(this.actualConversation.messages[i].imageUrl);
+        this.getFileByUrl(this.actualConversation.messages[i].imageUrl, "message");
       }
       
     }
 
+   }
+
+   public getAllImagesThread(){
+
+    console.log("getAllImagesThread wird ausgeführt");
+    for (let i = 0; i < this.actualThread.messages.length; i++) {
+      for(let j = 0; j <this.actualThread.messages[i].threadMessages.length; j++){
+        if(this.actualThread.messages[i].threadMessages[j].imageUrl !== ''){
+          this.getFileByUrl(this.actualThread.messages[i].threadMessages[j].imageUrl, "thread");
+
+        }
+      }
+      
+    }
    }
 
 

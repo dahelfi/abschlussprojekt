@@ -17,7 +17,7 @@
                     </div>
 
                     <div *ngIf="content.imageUrl !=''">
-                        <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl) | async">
+                        <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl, 'message') | async">
 
                     </div>
 
@@ -45,7 +45,7 @@
                         </div>
     
                         <div *ngIf="content.imageUrl !=''">
-                            <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl) | async">
+                            <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl, 'message') | async">
     
                         </div>
     

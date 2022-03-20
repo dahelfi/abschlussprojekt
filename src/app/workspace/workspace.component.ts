@@ -63,6 +63,7 @@ export class WorkspaceComponent implements OnInit {
     
     
     this.backend.setTheActualThread(new Conversation(this.backend.actualConversation));
+    this.backend.getAllImagesThread();
     this.backend.setTheActualThreadMessage(new Message(this.backend.findMessageObjektByIdInArray(messageElement.messageId, this.backend.actualThread.messages)));
     this.backend.allowUpdateThreadDescription = true;
     this.backend.calculateActualThreadDescription();
