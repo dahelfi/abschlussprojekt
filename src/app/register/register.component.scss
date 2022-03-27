@@ -1,23 +1,31 @@
-#register{
-  
+#register {
+  width: 480px;
   position: absolute;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   top: 50%;
-  left: 1rem;
-  right: 1rem;
+  left: 50%;
   form {
-      display: flex;
-      flex-direction: column;
-      & > * {
-        margin: 0.5rem;
-      }
-      button{
-        margin-top: 1.5rem;
-      }
+    display: flex;
+    flex-direction: column;
+    & > * {
+      margin: 0.5rem;
+    }
+    button {
+      margin-top: 1.5rem;
+    }
   }
 
-  @media (orientation: landscape) {
-    transform: translateY(0);
+  @media (max-width: 480px) {
+    transform: translateY(-50%);
+    top: 50%;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+  }
+  @media (max-height: 480px) and (orientation: landscape) {
+    transform: translate(-50%, 0);
     top: 5rem;
+    left: 50%;
+    max-width: 480px;
   }
 }
