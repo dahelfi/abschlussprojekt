@@ -1,27 +1,27 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="box">
+<mat-card id="login">
 
-    <mat-card-header>
-      <mat-card-title>Log in</mat-card-title>
-    </mat-card-header>
+  <mat-card-title>Log in</mat-card-title>
 
-    <mat-card-content>
-      <form class="example-form">
+  <mat-card-content>
 
-        <mat-form-field class="example-full-width">
+    <form>
+      <div>
+        <mat-form-field>
           <input [(ngModel)]="inputUsername" name="inputUsername" matInput placeholder="Username">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input type="password" name="inputPassword" [(ngModel)]="inputPassword" matInput placeholder="Password">
+
+        <mat-form-field>
+          <input [(ngModel)]="inputPassword" name="inputPassword" matInput placeholder="Password" type="password">
         </mat-form-field>
+      </div>
 
-        <div class="space mt-3 mb-3"></div>
+      <div>
+        <button mat-raised-button color="primary" (click)="logIn()">Log in</button>
 
-        <button (click)="logIn()" mat-stroked-button color="accent" class="btn-block mb-3">Log in</button>
-        <button mat-stroked-button color="accent" class="btn-block" class="btn-block" routerLink="/register">Create new account</button>
+        <button mat-button color="accent" routerLink="/register">Create new account</button>
+      </div>
+    </form>
 
-      </form>
-    </mat-card-content>
+  </mat-card-content>
 
-  </mat-card>
-</div>
+</mat-card>
