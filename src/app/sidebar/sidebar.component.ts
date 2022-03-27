@@ -34,17 +34,29 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  /**
+   * function allows is to open dialog message
+   */
   openDialogMessage() {
     const dialogRef = this.dialog.open(DialogAddMessageComponent);
 
     dialogRef.afterClosed().subscribe(result => { });
   }
 
+  /**
+   * function allows is to open dialog channel
+   */
   openDialogChannel() {
     const dialogRef = this.dialog.open(DialogAddChannelComponent);
 
     dialogRef.afterClosed().subscribe(result => { });
   }
+
+   /**
+   * important function that set the conversationid of the actual conversation (not a channel conversation) in the url that it can be updated
+   * @param channel 
+   */
 
   public addConversationIDInURL(username: any){
     let cId:any;
@@ -53,6 +65,11 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['user/' + this.backend.loggedInUser.customIdName + '/conversation/' + cId])
   }
 
+
+  /**
+   * important function that set the conversationid of the actual conversation (channel) in the url that it can be updated
+   * @param channel 
+   */
   public addChannelConversationInURL(channel:any){
     this.router.navigate(['user/' + this.backend.loggedInUser.customIdName + '/conversation/' + channel.customIdName])
   }

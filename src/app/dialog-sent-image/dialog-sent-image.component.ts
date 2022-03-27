@@ -35,14 +35,9 @@ export class DialogSentImageComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
+  /**
+   * in this function we are sending the image and the message 
+   */
   public manageMessageSending() {
    
     
@@ -63,6 +58,11 @@ export class DialogSentImageComponent implements OnInit {
   }
 
 
+  /**
+   * with this function we are sending the files through the backend function to the firebase storage
+   * @param url 
+   * @param category 
+   */
 
   sendFiles(url:string, category:string){
     if(this.backend.image){

@@ -48,6 +48,9 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
     this.route.params.subscribe((params: any) => {
 
     
+        /**
+         * in this section we are updating automatically the loggedInUser through the set route in the url
+         */
    
         this.backend.database.collection('users').doc(params.id)
         .valueChanges({ idField: "customIdName" }).subscribe((currentUser: any)=>{
@@ -63,7 +66,9 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
        });
 
        
-     
+        /**
+         * in this section we are updating automatically the actualConversation through the set route in the url
+         */
        
 
        this.backend.database.collection('conversations').doc(params.cid)
@@ -77,7 +82,9 @@ export class MainInterfaceComponent implements OnInit, AfterViewInit, OnDestroy 
        
     
      
-
+        /**
+         * in this section we are updating the actualThread 
+         */
                 
        this.backend.database.collection('conversations').doc(this.backend.actualThread.customIdName)
        .valueChanges({ idField: "customIdName" }).subscribe((currentThread: any)=>{

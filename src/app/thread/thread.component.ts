@@ -39,6 +39,11 @@ export class ThreadComponent implements OnInit {
 
   constructor(public backend:BackendServiceService, public dialog: MatDialog) { }
 
+
+  /**
+   * with this function we select the image we want to send
+   * @param e 
+   */
   onFileSelected(e:any){
     if(e.target.files){
       this.backend.image = e.target.files[0];
@@ -56,12 +61,19 @@ export class ThreadComponent implements OnInit {
 
   
   
+  /**
+   * with this function we close the thread
+   */
 
   stopThreadWork(){
     this.backend.openThread = false;
     //this.backend.actualThread = null;
   }
 
+
+  /**
+   * with this function we can create and send messages
+   */
 
   public manageMessageSending() {
     if (this.messageJson.messageContent != '') {

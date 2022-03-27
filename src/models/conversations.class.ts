@@ -3,11 +3,11 @@ import { Message } from "./message.class";
 
 export class Conversation{
     
-    conversationId:number;
-    channelName:string = '';
-    participators: any[]; //vllt doch besser UserObjekte nehmen, nachdenken noch nachher 
-    messages: any[];
-    customIdName:string = "";
+    conversationId:number;// here we provide the id that we use in this programm we dont use the firebase id
+    channelName:string = '';//if we have an channelConversation then we give a channelName to the Conversation
+    participators: any[]; //here we store all userids from all user that participate on the conversation (min 2)
+    messages: any[];// here we stroe all MessageObjekts that has been sended in the conversation
+    customIdName:string = "";//here we store the firebase intern id that firebase gives every conversationDocument
     
     
 

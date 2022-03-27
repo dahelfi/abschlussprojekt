@@ -20,6 +20,10 @@ export class DialogAddMessageComponent implements OnInit {
     
     
   }
+  /**
+   * with this function we are adding an conversation between to participants
+   * @param userElement 
+   */
 
   public addConversationwithUser(userElement:any){
     if(!this.backend.findConversationId(this.backend.loggedInUser.userId, userElement.userId)){
