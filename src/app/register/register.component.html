@@ -1,42 +1,37 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<mat-card id="register">
 
-  <mat-card class="box">
-    <mat-card-header>
-      <mat-card-title>Register</mat-card-title>
-    </mat-card-header>
+  <mat-card-title>Register</mat-card-title>
 
-    <mat-card-content>
-      <form (ngSubmit)="registerUser()" class="example-form" #registerForm="ngForm">
+  <mat-card-content>
+    <form (ngSubmit)="registerUser()" #registerForm="ngForm">
 
-        <mat-form-field class="example-full-width">
-          <input required [(ngModel)]="userJson.userName" matInput placeholder="Username" name="userName">
-        </mat-form-field>
+      <mat-form-field >
+        <input required [(ngModel)]="userJson.userName" matInput placeholder="Username" name="userName">
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input required [(ngModel)]="userJson.email" matInput placeholder="Email" name="email">
-        </mat-form-field>
+      <mat-form-field>
+        <input required [(ngModel)]="userJson.email" matInput placeholder="Email" name="email">
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input required [(ngModel)]="userJson.password" matInput type="password" placeholder="Password"
-            name="password">
-        </mat-form-field>
+      <mat-form-field>
+        <input required [(ngModel)]="userJson.password" matInput placeholder="Password" name="password" type="password">
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Choose a role...</mat-label>
+      <mat-form-field>
+        <mat-label>Choose a role...</mat-label>
 
-          <mat-select [(value)]="role">
-            <mat-option [value]="role" *ngFor="let role of Roles">
-              {{ role }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <mat-select [(value)]="role">
+          <mat-option [value]="role" *ngFor="let role of Roles">
+            {{ role }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <button type="submit" mat-stroked-button color="accent" class="btn-block">Register</button>
+      <button type="submit" mat-raised-button color="primary">Register</button>
 
-      </form>
-    </mat-card-content>
+    </form>
+  </mat-card-content>
 
-    <button class="btn-close position-absolute top-0 end-0" routerLink="/login"></button>
+  <button class="btn-close position-absolute top-0 end-0 p-2" routerLink="/login"></button>
 
-  </mat-card>
-</div>
+</mat-card>
