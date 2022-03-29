@@ -1,77 +1,51 @@
 <div id="workspace">
-    <mat-toolbar >
+    <mat-toolbar>
         <span>{{ backend.actualConversationDescription }}</span>
     </mat-toolbar>
 
     <div class="main">
         <div style="overflow-y: scroll; height: 100%;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <!-- now we have an Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for 'scrollTop': '892'. Current value: '1020'.. Find more at https://angular.io/errors/NG0100 -->
-            <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages">
-                <mat-card *ngIf="backend.loggedInUser.userId == content.creatorId" class="m-3 positioning" style="background-color: #e2bae6">
-                   
+            <div class="messagesContainer" *ngFor="let content of backend.actualConversation.messages"
+                [class.messageOfMe]="backend.loggedInUser.userId == content.creatorId">
 
-                    <div style="margin-right: 150px;">
-                    <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
-                    <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                    <mat-card-content>{{ content.messageContent }}</mat-card-content>
+                <mat-card>
+
+                    <div class="tools card">
+                        <button mat-button matTooltip="open in thread" (click)="openMessageInThread(content)">
+                            <mat-icon>chat</mat-icon>
+                        </button>
                     </div>
 
-                    <div *ngIf="content.imageUrl !=''">
-                        <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl, 'message') | async">
-
+                    <div class="header">
+                        <strong>{{ content.creatorUserName }}</strong>
+                        <i class="text-muted">{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</i>
                     </div>
 
-                    <div class="tools ms-auto">
-                        <div style="display: flex;">
-                            <button mat-icon-button (click)="openMessageInThread(content)">
-                                <mat-icon>comment</mat-icon>
-                            </button>
-                            <div *ngIf = "content.threadMessages.length > 0">
-                                <p *ngIf="content.threadMessages.length == 1" style="color: red;">{{ content.threadMessages.length + " " }} Answer</p>
-                                <p *ngIf="content.threadMessages.length > 1" style="color: red;">{{ content.threadMessages.length + " " }} Answers</p>
-                            </div>
-                        </div>
-                       
-                        <h5>Open in Thread</h5>
-                    </div>
+                    <img mat-card-image *ngIf="content.imageUrl !=''"
+                        [src]="backend.getImageById(content.imageUrl, 'message') | async">
+
+                    <mat-card-content>
+                        <p>{{ content.messageContent }}</p>
+                    </mat-card-content>
+
+                    <button mat-button *ngIf="content.threadMessages.length > 0" (click)="openMessageInThread(content)">
+                        <p *ngIf="content.threadMessages.length == 1" style="color: red;">{{
+                            content.threadMessages.length + " " }} Answer</p>
+                        <p *ngIf="content.threadMessages.length > 1" style="color: red;">{{
+                            content.threadMessages.length + " " }} Answers</p>
+                    </button>
 
                 </mat-card>
 
-                <mat-card *ngIf="backend.loggedInUser.userId != content.creatorId" class="m-3 positioning">
-                    <div style="margin-right: 150px;">
-                        <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
-                        <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                        <mat-card-content>{{ content.messageContent }}</mat-card-content>
-                        </div>
-    
-                        <div *ngIf="content.imageUrl !=''">
-                            <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl, 'message') | async">
-    
-                        </div>
-    
-                        <div class="tools ms-auto">
-                            <div style="display: flex;">
-                                <button mat-icon-button (click)="openMessageInThread(content)">
-                                    <mat-icon>comment</mat-icon>
-                                </button>
-                                <div *ngIf = "content.threadMessages.length > 0">
-                                    <p *ngIf="content.threadMessages.length == 1" style="color: red;">{{ content.threadMessages.length + " " }} Answer</p>
-                                    <p *ngIf="content.threadMessages.length > 1" style="color: red;">{{ content.threadMessages.length + " " }} Answers</p>
-                                </div>
-                            </div>
-                           
-                            <h5>Open in Thread</h5>
-                        </div>
-
-                </mat-card>
             </div>
         </div>
 
 
-      
 
-   
-     
+
+
+
 
         <div style="display: flex; margin: 1rem;">
 

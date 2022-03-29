@@ -13,18 +13,47 @@
 
 .messagesContainer {
     position: relative;
-    .tools {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        visibility: hidden;
+    width: 100%;
+    display: inline-flex;
+
+    &.messageOfMe {
+        justify-content: end;
+        mat-card {
+            background-color: rgba(110, 66, 193, 0.1);
+        }
     }
 
-    &:hover .tools {
-        visibility: visible;
-    }
-}
+    mat-card{
+        max-width: 75%;
+        margin: 2px;
+        
+        .tools {
+            position: absolute;
+            right: 1rem;
+            top: -1rem;
+            visibility: hidden;
+        }
+    
+        &:hover .tools {
+            visibility: visible;
+        }
+    
+        .header{
+            margin-bottom: 1rem;
+            font-size: small;
+            display: flex;
+            width: 100%;
+            strong{
+                margin-right: 1rem;
+            }
+        }
 
-.positioning{
-    display: flex;
+        img{
+            max-width: 10rem;
+        }
+
+        mat-card-content{
+            word-break: break-all;
+        }
+    }
 }
