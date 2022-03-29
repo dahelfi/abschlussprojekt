@@ -36,12 +36,9 @@ export class DialogThreadSentImageComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
+  /**
+   * with this function we create and send messages and images
+   */
 
 
   public manageMessageSending() {
@@ -66,6 +63,12 @@ export class DialogThreadSentImageComponent implements OnInit {
   }
 
 
+
+  /**
+   * with this function we are sending files with the help of the backend function 
+   * @param url 
+   * @param category 
+   */
 
   sendFiles(url:string, category:string){
     if(this.backend.image){

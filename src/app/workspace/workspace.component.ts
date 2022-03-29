@@ -42,6 +42,10 @@ export class WorkspaceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * with this function we can select the image we want to sent
+   * @param e 
+   */
   onFileSelected(e:any){
     if(e.target.files){
       this.backend.image = e.target.files[0];
@@ -58,6 +62,10 @@ export class WorkspaceComponent implements OnInit {
   }
 
 
+  /**
+   * with this function we can add a message in a thread
+   * @param messageElement 
+   */
 
   public openMessageInThread(messageElement:any){
     
@@ -72,6 +80,11 @@ export class WorkspaceComponent implements OnInit {
 
   }
 
+
+  /**
+   * with this function we can manage the message sending 
+   * @param messageElement 
+   */
 
   public manageMessageSending() {
     if (this.messageJson.messageContent != '' && this.messageJson.messageContent.length >=1) {
@@ -91,23 +104,5 @@ export class WorkspaceComponent implements OnInit {
 
 
 
-  /**
-   * mit dieser methode kann man weitere nachrichten schicken wenn die erste bereits geschickt ist und das element bereits kreeiert ist
-
-
-  /**
-   * updates an exicting conversationselement when one message is added
-   * @param conversationElement 
-   */
-  // public updateConversation(conversationElement:any){
-  //   for (let i = 0; i < this.backend.allConversationsForDb.allConversationsArray.length; i++) {
-  //      if(this.backend.allConversationsForDb.allConversationsArray[i].conversationId == conversationElement.conversationId){
-  //       this.backend.allConversationsForDb.allConversationsArray[i] = conversationElement;
-  //      }
-
-  //     }
-  //   this.backend.updateAllConversations();
-
-  // }
 
 }

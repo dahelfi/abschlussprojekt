@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   Roles: any = ['Admin', 'Author', 'Reader'];
   userJson = {
     customIdName: '',
-    userName: '', //Bind  to InputField username
+    userName: 'test', //Bind  to InputField username
     email: '', //Bind to InputField email
     password: '', //Bind to InputField password
     role:'',
@@ -62,6 +62,11 @@ export class RegisterComponent implements OnInit {
     this.role = '';
 
   }
+
+  /**
+   * function checks if all inputfields are correctly filled in
+   * @returns 
+   */
 
   public checkIfallInputAreFilled(){
     return this.userJson.userName !== '' && this.userJson.userName !== '' &&

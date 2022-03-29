@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /**
+   * this methods checks if all inputfields are filled in
+   * @returns 
+   */
   public checkAllInputFields(){
     return this.inputPassword !=='' || this.inputPassword== undefined && this.inputUsername== undefined || this.inputUsername !=='';
   }

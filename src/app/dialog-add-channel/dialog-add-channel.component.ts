@@ -18,6 +18,10 @@ export class DialogAddChannelComponent implements OnInit {
   channelName!:string;
   conversationObject!:Conversation;
 
+
+  /**
+   * with this function we can create a new channel
+   */
   public createANewChannel(){
     if(this.channelName && this.channelName.length >= 3){
       this.conversationObject = new Conversation();
@@ -32,6 +36,10 @@ export class DialogAddChannelComponent implements OnInit {
 
   }
 
+  /**
+   * with this function we can add a channel to the loggedInUser 
+   * @param channel 
+   */
   public addChannelToUser(channel:any){
     this.conversationObject = new Conversation(channel);
     if(!this.backend.checkIfChannelAlreadySubscribed(this.conversationObject.conversationId)){
