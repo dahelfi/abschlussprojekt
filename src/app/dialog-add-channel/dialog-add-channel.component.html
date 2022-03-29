@@ -1,38 +1,29 @@
-<mat-card >
-    <h3>Join existing Channels</h3>
-    <table class="user-table">
-      <tr>
-       <th>Channel</th>
-      </tr>
- 
-      <tr *ngFor="let channel of backend.allChannelsArrayForUse" (click)="addChannelToUser(channel)">
-        <td>{{ channel['channelName'] }}</td>
-        
-      </tr>
- 
- 
-   
- 
-    </table>
+<h5 mat-dialog-title>Add channels</h5>
+<mat-dialog-content>
+    <div *ngFor="let channel of backend.allChannelsArrayForUse">
+        <div class="card m-1">
+            <div class="card-body hstack gap-2">
+                <span>
+                    {{ channel['channelName'] }}
+                </span>
 
-    <div>
-        <h3>Create a new Channel</h3>
-        <div>
-            <form (ngSubmit)="createANewChannel()" style="display: flex;">
-      
-                <textarea class="form-control me-auto" 
-                    [(ngModel)]="channelName" 
-                    name="test" id=""
-                    cdkTextareaAutosize>
-                </textarea>
-        
-                <button style="margin-left: 20px;" type="submit" mat-icon-button>
-                    Create
+                <button mat-icon-button class="ms-auto" (click)="addChannelToUser(channel)" [mat-dialog-close]="true">
+                    <mat-icon>chevron_right</mat-icon>
                 </button>
-        
-            </form>
+            </div>
         </div>
     </div>
-  
-   </mat-card>
- 
+
+    <mat-divider style="margin-top: 3rem; margin-bottom: 3rem;"></mat-divider>
+
+    <form align="end">
+        <mat-form-field appearance="outline" (ngSubmit)="createANewChannel()">
+            <mat-label>New channel</mat-label>
+            <input matInput [(ngModel)]="channelName" name="test" autofocus>
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary" class="m-3" [mat-dialog-close]="true">
+            Create
+        </button>
+    </form>
+</mat-dialog-content>
