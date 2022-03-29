@@ -2,7 +2,7 @@
     .main {
         position: inherit;
         height: calc(100vh - 64px - 64px);
-
+        min-width: 280px;
         // positions Message-InputField at bottom BUT has no effect on width/autoresize of InputField like positon-fixed.
         display: flex;
         flex-direction: column;
@@ -49,7 +49,7 @@
         }
 
         img{
-            max-width: 10rem;
+            max-width: 280px;
         }
 
         mat-card-content{

@@ -11,67 +11,41 @@
     <div class="main">
         <div style="overflow-y: scroll; height: 100%;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
 
-                <div>
-                    <mat-card class="m-3" style="background-color: #83dfe6; display: flex; justify-content: space-between;">
+            <div class="messagesContainer">
+                <mat-card class="m-3" style="background-color: #83dfe6;">
 
-                        <div>
-
-                            <mat-card-title>{{ backend.actualThreadMessage.creatorUserName }}</mat-card-title>
-                            <mat-card-subtitle>{{ backend.actualThreadMessage.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                            <mat-card-content>{{ backend.actualThreadMessage.messageContent }}</mat-card-content>
-
-                        </div>
-                    
-
-                        <div *ngIf="backend.actualThreadMessage.imageUrl !=''">
-                            <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(backend.actualThreadMessage.imageUrl, 'message') | async">
-    
-                        </div>
-    
-    
-                        
-    
-                    </mat-card>
-
-                </div>
-            
-                <div class="messagesContainer" *ngFor="let content of backend.actualThreadMessage.threadMessages">
-                    <mat-card style="background-color: #e3dc94; display: flex; justify-content: space-between;" class="m-3" *ngIf="backend.loggedInUser.userId == content.creatorId">
-                        <div>
-                            <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
-                            <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                            <mat-card-content>{{ content.messageContent }}</mat-card-content>
-
-                        </div>
-                        
-    
-                        <div *ngIf="content.imageUrl !=''">
-                            <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl, 'thread') | async">
-    
-                        </div>
-                        
-    
-                </mat-card>
-
-                <mat-card class="m-3" style="display: flex; justify-content: space-between;" *ngIf="backend.loggedInUser.userId != content.creatorId">
-                    <div>
-                        <mat-card-title>{{ content.creatorUserName }}</mat-card-title>
-                        <mat-card-subtitle>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</mat-card-subtitle>
-                        <mat-card-content>{{ content.messageContent }}</mat-card-content>
-                        
-                    </div>
-                    
-
-                    <div *ngIf="content.imageUrl !=''">
-                        <img style="max-height: 120px; max-width: 200px; border-radius: 5px; object-fit: contain;" [src]="backend.getImageById(content.imageUrl, 'thread') | async">
-
+                    <div class="header">
+                        <strong>{{ backend.actualThreadMessage.creatorUserName }}</strong>
+                        <i>{{ backend.actualThreadMessage.timestamp | date: 'dd.MM.y HH:mm' }}</i>
                     </div>
 
-                    
+                    <img mat-card-image *ngIf="backend.actualThreadMessage.imageUrl !=''"
+                        [src]="backend.getImageById(backend.actualThreadMessage.imageUrl, 'message') | async">
+
+                    <mat-card-content>
+                        <p>{{ backend.actualThreadMessage.messageContent }}</p>
+                    </mat-card-content>
 
                 </mat-card>
-               
-           
+            </div>
+
+            <div class="messagesContainer" *ngFor="let content of backend.actualThreadMessage.threadMessages"
+                [class.messageOfMe]="backend.loggedInUser.userId == content.creatorId">
+                <mat-card>
+
+                    <div class="header">
+                        <strong>{{ content.creatorUserName }}</strong>
+                        <i>{{ content.timestamp | date: 'dd.MM.y HH:mm' }}</i>
+                    </div>
+
+                    <img mat-card-image *ngIf="content.imageUrl !=''"
+                        [src]="backend.getImageById(content.imageUrl, 'thread') | async">
+
+                    <mat-card-content>
+                        <p>{{ content.messageContent }}</p>
+                    </mat-card-content>
+
+                </mat-card>
             </div>
 
             <div style="display: flex; margin: 1rem;">
@@ -81,22 +55,22 @@
                         style="position: fixed; top: -100em;">
                     <mat-icon>photo_camera</mat-icon>
                 </button>
-    
+
                 <form #messageInput="ngForm" (ngSubmit)="manageMessageSending(); messageInput.resetForm()"
                     class="hstack gap-2" style="width: 100%;">
-    
-    
-    
+
+
+
                     <textarea class="form-control me-auto" [(ngModel)]="messageJson.messageContent" name="test" id=""
-                        cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
-                        autofocus>
+                        cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5" autofocus>
                 </textarea>
-    
-    
+
+
                     <button type="submit" mat-icon-button>
                         <mat-icon>send</mat-icon>
                     </button>
-    
+
                 </form>
 
             </div>

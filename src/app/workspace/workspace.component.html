@@ -29,11 +29,11 @@
                         <p>{{ content.messageContent }}</p>
                     </mat-card-content>
 
-                    <button mat-button *ngIf="content.threadMessages.length > 0" (click)="openMessageInThread(content)">
-                        <p *ngIf="content.threadMessages.length == 1" style="color: red;">{{
-                            content.threadMessages.length + " " }} Answer</p>
-                        <p *ngIf="content.threadMessages.length > 1" style="color: red;">{{
-                            content.threadMessages.length + " " }} Answers</p>
+                    <button mat-button class="w-100" *ngIf="content.threadMessages.length > 0" (click)="openMessageInThread(content)">
+                        <span *ngIf="content.threadMessages.length == 1" style="color: red;">{{
+                            content.threadMessages.length + " " }} Answer</span>
+                        <span *ngIf="content.threadMessages.length > 1" style="color: red;">{{
+                            content.threadMessages.length + " " }} Answers</span>
                     </button>
 
                 </mat-card>
