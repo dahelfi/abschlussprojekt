@@ -1,22 +1,11 @@
+<h5 mat-dialog-title>Message to</h5>
+<mat-dialog-content>
+  <div *ngFor="let user of backend.allUsersArrayForUse">
 
-  <mat-card >
-    <table class="user-table">
-      <tr>
-       <th>Username</th>
-       <th>Email</th>
-      </tr>
- 
-      <tr *ngFor="let user of backend.allUsersArrayForUse" (click)="addConversationwithUser(user)">
-        <td>{{ user['userName'] }}</td>
-        <td>{{ user['email'] }}</td>
-      </tr>
- 
- 
-   
- 
-    </table>
-   </mat-card>
- 
- 
- 
- 
+    <div class="card p-2 m-1 hstack gap-2 w-100" (click)="addConversationwithUser(user)" [mat-dialog-close]="true">
+      <span><strong> {{ user['userName'] }} </strong></span>
+      <span class="ms-auto">{{ user['email'] }}</span>
+    </div>
+
+  </div>
+</mat-dialog-content>
