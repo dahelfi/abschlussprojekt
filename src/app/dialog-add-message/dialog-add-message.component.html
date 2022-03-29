@@ -2,7 +2,7 @@
 <mat-dialog-content>
   <div *ngFor="let user of backend.allUsersArrayForUse">
 
-    <div class="card p-2 m-1 hstack gap-2 w-100" (click)="addConversationwithUser(user)" [mat-dialog-close]="true">
+    <div class="card p-2 m-1 hstack gap-2 w-100 overflow-hidden" (click)="addConversationwithUser(user)" [mat-dialog-close]="true">
       <span><strong> {{ user['userName'] }} </strong></span>
       <span class="ms-auto">{{ user['email'] }}</span>
     </div>
